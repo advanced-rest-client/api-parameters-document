@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+  <title>api-parameters-document test</title>
+  <script src="../../webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <script src="../../iron-test-helpers/mock-interactions.js"></script>
+  <script src="amf-loader.js"></script>
+  <link rel="import" href="../api-parameters-document.html">
+</head>
+<body>
+  <test-fixture id="Basic">
+    <template>
+      <api-parameters-document></api-parameters-document>
+    </template>
+  </test-fixture>
+
+  <script>
+  /* global AmfLoader, MockInteractions */
+  suite('api-parameters-document', () => {
+    let element;
+
+    suite('Basic', () => {
+      test('Renders no params tables without data', (done) => {
+        element = fixture('Basic');
+        flush(() => {
+          const doc = element.shadowRoot.querySelector('api-type-document');
+          assert.notOk(doc);
+          done();
+        });
+      });
+
+      test('hasQueryParameters is undefined', () => {
+        assert.isUndefined(element.hasQueryParameters);
+      });
+
+      test('hasPathParameters is undefined', () => {
+        assert.isUndefined(element.hasPathParameters);
+      });
+    });
+
+    suite('Base path parameters', () => {
+      let amf;
+      let baseData;
+      suiteSetup(() => {
+        return AmfLoader.load(1, 0)
+        .then((data) => {
+          amf = data[0];
+          baseData = data[1];
+        });
+      });
+
+      setup((done) => {
+        element = fixture('Basic');
+        element.amfModel = amf;
+        element.baseUriParameters = baseData;
+        flush(() => done());
+      });
+
+      test('Computes _effectivePathParameters', () => {
+        assert.typeOf(element._effectivePathParameters, 'array');
+        assert.lengthOf(element._effectivePathParameters, 1);
+      });
+
+      test('Computes hasPathParameters', () => {
+        assert.isTrue(element.hasPathParameters);
+      });
+
+      test('Renders uri parameters table', () => {
+        const section = element.shadowRoot.querySelector('.uri-parameters');
+        assert.ok(section);
+      });
+
+      test('Parameters are set on table', () => {
+        const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
+        assert.isTrue(doc.type === element._effectivePathParameters);
+      });
+
+      test('Toggle button open the URI section', () => {
+        const button = element.shadowRoot.querySelector('.uri-parameters .toggle-button');
+        MockInteractions.tap(button);
+        assert.isTrue(element.pathOpened);
+      });
+    });
+
+    suite('Base path + endpoint path parameters', () => {
+      let amf;
+      let baseData;
+      let pathData;
+      suiteSetup(() => {
+        return AmfLoader.load(0, 0)
+        .then((data) => {
+          amf = data[0];
+          baseData = data[1];
+          pathData = data[2];
+        });
+      });
+
+      setup((done) => {
+        element = fixture('Basic');
+        element.amfModel = amf;
+        element.baseUriParameters = baseData;
+        element.endpointParameters = pathData;
+        flush(() => done());
+      });
+
+      test('Computes _effectivePathParameters', () => {
+        assert.typeOf(element._effectivePathParameters, 'array');
+      });
+
+      test('_effectivePathParameters contains both parameters arrays', () => {
+        assert.lengthOf(element._effectivePathParameters, 2);
+        const p = element._effectivePathParameters;
+        assert.equal(p[0]['@id'], 'file://demo/api.raml#/web-api/http%3A%2F%2F%7Benvironment%7D.api.domain.com%2F%7Bversion%7D%2F/parameter/environment');
+        assert.equal(p[1]['@id'], 'file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/parameter/feature');
+      });
+
+      test('Computes hasPathParameters', () => {
+        assert.isTrue(element.hasPathParameters);
+      });
+
+      test('Renders uri parameters table', () => {
+        const section = element.shadowRoot.querySelector('.uri-parameters');
+        assert.ok(section);
+      });
+
+      test('Query table is not', () => {
+        const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
+        assert.isTrue(doc.type === element._effectivePathParameters);
+      });
+    });
+
+    suite('Base path + endpoint path parameters', () => {
+      let amf;
+      let baseData;
+      let pathData;
+      let queryData;
+      suiteSetup(() => {
+        return AmfLoader.load(2, 0)
+        .then((data) => {
+          amf = data[0];
+          baseData = data[1];
+          pathData = data[2];
+          queryData = data[3];
+        });
+      });
+
+      setup((done) => {
+        element = fixture('Basic');
+        element.amfModel = amf;
+        element.baseUriParameters = baseData;
+        element.endpointParameters = pathData;
+        element.queryParameters = queryData;
+        flush(() => done());
+      });
+
+      test('Computes hasQueryParameters', () => {
+        assert.isTrue(element.hasQueryParameters);
+      });
+
+      test('Renders query parameters table', () => {
+        const section = element.shadowRoot.querySelector('.query-parameters');
+        assert.ok(section);
+      });
+
+      test('Parameters are set on table', () => {
+        const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+        assert.isTrue(doc.type === element.queryParameters);
+      });
+
+      test('Toggle button open the Query section', () => {
+        const button = element.shadowRoot.querySelector('.query-parameters .toggle-button');
+        MockInteractions.tap(button);
+        assert.isTrue(element.queryOpened);
+      });
+    });
+  });
+  </script>
+</body>
+</html>
