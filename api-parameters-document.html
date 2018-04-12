@@ -148,12 +148,18 @@
          * Set to true to open the query parameters view.
          * Autormatically updated when the view is toggled from the UI.
          */
-        queryOpened: Boolean,
+        queryOpened: {
+          type: Boolean,
+          value: false
+        },
         /**
          * Set to true to open the path parameters view.
          * Autormatically updated when the view is toggled from the UI.
          */
-        pathOpened: Boolean,
+        pathOpened: {
+          type: Boolean,
+          value: false
+        },
         /**
          * The `http://raml.org/vocabularies/http#variable` entry
          * from API's `http://raml.org/vocabularies/http#server` model.
