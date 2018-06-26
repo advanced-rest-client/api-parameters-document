@@ -82,16 +82,16 @@
         }
       };
       app._sendBaseParams = function(data) {
-        const enc = data[0]['http://raml.org/vocabularies/document#encodes'][0];
-        const srv = enc['http://raml.org/vocabularies/http#server'][0];
-        app.baseUriParameters = srv['http://raml.org/vocabularies/http#variable'];
+        const enc = data[0]['http://a.ml/vocabularies/document#encodes'][0];
+        const srv = enc['http://a.ml/vocabularies/http#server'][0];
+        app.baseUriParameters = srv['http://a.ml/vocabularies/http#variable'];
       };
       app.setData = function(id) {
-        const enc = app.amfModel[0]['http://raml.org/vocabularies/document#encodes'][0];
-        const endpoints = enc['http://raml.org/vocabularies/http#endpoint'];
+        const enc = app.amfModel[0]['http://a.ml/vocabularies/document#encodes'][0];
+        const endpoints = enc['http://a.ml/vocabularies/http#endpoint'];
         const endpointId = id.substr(0, id.lastIndexOf('/'));
         const endpoint = endpoints.find((item) => item['@id'] === endpointId);
-        app.endpointParameters = endpoint['http://raml.org/vocabularies/http#parameter'];
+        app.endpointParameters = endpoint['http://a.ml/vocabularies/http#parameter'];
         const methods = endpoint['http://www.w3.org/ns/hydra/core#supportedOperation'];
         const method = methods.find((item) => item['@id'] === id);
         const expects = method['http://www.w3.org/ns/hydra/core#expects'];
@@ -99,8 +99,8 @@
           app.queryParameters = undefined;
           return;
         }
-        const request = expects.find((item) => item['@type'].indexOf('http://raml.org/vocabularies/http#Request') !== -1);
-        app.queryParameters = request['http://raml.org/vocabularies/http#parameter'];
+        const request = expects.find((item) => item['@type'].indexOf('http://a.ml/vocabularies/http#Request') !== -1);
+        app.queryParameters = request['http://a.ml/vocabularies/http#parameter'];
       };
       window.addEventListener('WebComponentsReady', () => app._load());
       window.addEventListener('api-navigation-selection-changed', app._navChanged);
