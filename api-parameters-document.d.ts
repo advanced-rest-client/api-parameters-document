@@ -111,6 +111,12 @@ declare namespace ApiElements {
     readonly hasPathParameters: boolean|null|undefined;
 
     /**
+     * A property passed to the type document element to render
+     * a mogile friendly view.
+     */
+    narrow: boolean|null|undefined;
+
+    /**
      * Computes boolean value if passed argument is not empty array.
      *
      * @param params The array to test.

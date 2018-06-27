@@ -70,7 +70,7 @@
           </div>
         </div>
         <iron-collapse opened="[[pathOpened]]">
-          <api-type-document amf-model="[[amfModel]]" type="[[_effectivePathParameters]]"></api-type-document>
+          <api-type-document amf-model="[[amfModel]]" type="[[_effectivePathParameters]]" narrow="[[narrow]]"></api-type-document>
         </iron-collapse>
       </section>
     </template>
@@ -86,7 +86,7 @@
           </div>
         </div>
         <iron-collapse opened="[[queryOpened]]">
-          <api-type-document amf-model="[[amfModel]]" type="[[queryParameters]]"></api-type-document>
+          <api-type-document amf-model="[[amfModel]]" type="[[queryParameters]]" narrow="[[narrow]]"></api-type-document>
         </iron-collapse>
       </section>
     </template>
@@ -204,7 +204,12 @@
           type: Boolean,
           readOnly: true,
           computed: '_computeHasParameters(_effectivePathParameters)'
-        }
+        },
+        /**
+         * A property passed to the type document element to render
+         * a mogile friendly view.
+         */
+        narrow: Boolean
       };
     }
     /**
