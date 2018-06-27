@@ -48,6 +48,7 @@ declare namespace ApiElements {
    * `--api-parameters-document-toggle-view-hover-color` | Color of the toggle button when hovering. Please, mind that hover is not available on all devices.| `--arc-toggle-view-icon-hover-color` or `rgba(0, 0, 0, 0.88)`
    * `--toggle-button-hover` | Theme style, mixin apllied to toggle button when hovered. | `{}`
    * `--api-parameters-document-title` | Mixin applied to the title element | `{}`
+   * `--api-parameters-document-title-narrow` | Mixin applied to the title when in narrow layout | `{}`
    */
   class ApiParametersDocument extends Polymer.Element {
 
@@ -111,8 +112,7 @@ declare namespace ApiElements {
     readonly hasPathParameters: boolean|null|undefined;
 
     /**
-     * A property passed to the type document element to render
-     * a mogile friendly view.
+     * Set to render a mobile friendly view.
      */
     narrow: boolean|null|undefined;
 
