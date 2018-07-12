@@ -22,6 +22,11 @@
     .section-title-area {
       @apply --layout-horizontal;
       @apply --layout-center;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
     }
 
@@ -30,6 +35,7 @@
     }
 
     .toggle-button {
+      outline: none;
       color: var(--api-parameters-document-toggle-view-color, var(--arc-toggle-view-icon-color, rgba(0, 0, 0, 0.74)));
       transition: color 0.25s ease-in-out;
       @apply --toggle-button;
@@ -41,6 +47,7 @@
     }
 
     .toggle-icon {
+      outline: none;
       margin-left: 8px;
       transform: rotateZ(0deg);
       transition: transform 0.3s ease-in-out;
@@ -64,10 +71,10 @@
     </template>
     <template is="dom-if" if="[[hasPathParameters]]">
       <section class="uri-parameters">
-        <div class="section-title-area">
+        <div class="section-title-area" on-click="toggleUri" title="Toogle URI parameters details">
           <h3 class="table-title">URI parameters</h3>
           <div class="title-area-actions">
-            <paper-button on-click="toggleUri" class="toggle-button" title="Toogle URI parameters details">
+            <paper-button class="toggle-button">
               [[_computeToggleActionLabel(pathOpened)]]
               <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(pathOpened)]]"></iron-icon>
             </paper-button>
@@ -80,10 +87,10 @@
     </template>
     <template is="dom-if" if="[[hasQueryParameters]]">
       <section class="query-parameters">
-        <div class="section-title-area">
+        <div class="section-title-area" on-click="toggleQuery" title="Toogle query parameters details">
           <h3 class="table-title">Query parameters</h3>
           <div class="title-area-actions">
-            <paper-button on-click="toggleQuery" class="toggle-button" title="Toogle query parameters details">
+            <paper-button class="toggle-button">
               [[_computeToggleActionLabel(queryOpened)]]
               <iron-icon icon="arc:expand-more" class$="[[_computeToggleIconClass(queryOpened)]]"></iron-icon>
             </paper-button>
