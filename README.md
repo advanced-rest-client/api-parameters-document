@@ -6,17 +6,6 @@
 
 Documentation component for API query and URI parameters based on AMF data model
 
-<!---
-```
-<custom-element-demo>
-  <template>
-    <link rel="import" href="api-parameters-document.html">
-    <next-code-block></next-code-block>
-  </template>
-</custom-element-demo>
-```
--->
-
 ```html
 <api-parameters-document></api-parameters-document>
 ```
