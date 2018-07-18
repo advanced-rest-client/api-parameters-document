@@ -223,7 +223,7 @@
                             ],
                             "http://a.ml/vocabularies/shapes#items": [
                               {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/testRepeatable/array/schema/scalar/default-scalar",
+                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/testRepeatable/array/schema/items/scalar/default-scalar",
                                 "@type": [
                                   "http://a.ml/vocabularies/shapes#ScalarShape",
                                   "http://www.w3.org/ns/shacl#Shape",
@@ -381,163 +381,21 @@
                         ],
                         "http://a.ml/vocabularies/http#schema": [
                           {
-                            "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/array/default-array",
+                            "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/array/default-array/linked_1",
                             "@type": [
                               "http://a.ml/vocabularies/shapes#ArrayShape",
                               "http://www.w3.org/ns/shacl#Shape",
                               "http://a.ml/vocabularies/shapes#Shape",
                               "http://a.ml/vocabularies/document#DomainElement"
                             ],
-                            "http://a.ml/vocabularies/shapes#items": [
+                            "http://a.ml/vocabularies/document#link-target": [
                               {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/array/default-array/scalar/default-scalar",
-                                "@type": [
-                                  "http://a.ml/vocabularies/shapes#ScalarShape",
-                                  "http://www.w3.org/ns/shacl#Shape",
-                                  "http://a.ml/vocabularies/shapes#Shape",
-                                  "http://a.ml/vocabularies/document#DomainElement"
-                                ],
-                                "http://www.w3.org/ns/shacl#datatype": [
-                                  {
-                                    "@id": "http://www.w3.org/2001/XMLSchema#integer"
-                                  }
-                                ]
+                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/array/default-array"
                               }
                             ],
-                            "http://a.ml/vocabularies/document#examples": [
+                            "http://a.ml/vocabularies/document#link-label": [
                               {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example",
-                                "@type": [
-                                  "http://a.ml/vocabularies/document#Example",
-                                  "http://a.ml/vocabularies/document#DomainElement"
-                                ],
-                                "http://schema.org/name": [
-                                  {
-                                    "@value": "Some-test-example"
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/document#strict": [
-                                  {
-                                    "@value": true
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/document#structuredValue": [
-                                  {
-                                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Array",
-                                      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"
-                                    ],
-                                    "http://www.w3.org/1999/02/22-rdf-syntax-ns#member": [
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_2",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Scalar"
-                                        ],
-                                        "http://a.ml/vocabularies/data#value": [
-                                          {
-                                            "@value": "123",
-                                            "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_3",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Scalar"
-                                        ],
-                                        "http://a.ml/vocabularies/data#value": [
-                                          {
-                                            "@value": "456",
-                                            "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                                          }
-                                        ]
-                                      }
-                                    ],
-                                    "http://a.ml/vocabularies/data#pos0": [
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_2"
-                                      }
-                                    ],
-                                    "http://a.ml/vocabularies/data#pos1": [
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_3"
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://www.w3.org/ns/shacl#raw": [
-                                  {
-                                    "@value": "[123, 456]"
-                                  }
-                                ]
-                              },
-                              {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example",
-                                "@type": [
-                                  "http://a.ml/vocabularies/document#Example",
-                                  "http://a.ml/vocabularies/document#DomainElement"
-                                ],
-                                "http://schema.org/name": [
-                                  {
-                                    "@value": "Other-example"
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/document#strict": [
-                                  {
-                                    "@value": true
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/document#structuredValue": [
-                                  {
-                                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Array",
-                                      "http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"
-                                    ],
-                                    "http://www.w3.org/1999/02/22-rdf-syntax-ns#member": [
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_2",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Scalar"
-                                        ],
-                                        "http://a.ml/vocabularies/data#value": [
-                                          {
-                                            "@value": "1011",
-                                            "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_3",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Scalar"
-                                        ],
-                                        "http://a.ml/vocabularies/data#value": [
-                                          {
-                                            "@value": "1213",
-                                            "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                                          }
-                                        ]
-                                      }
-                                    ],
-                                    "http://a.ml/vocabularies/data#pos0": [
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_2"
-                                      }
-                                    ],
-                                    "http://a.ml/vocabularies/data#pos1": [
-                                      {
-                                        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_3"
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://www.w3.org/ns/shacl#raw": [
-                                  {
-                                    "@value": "[1011, 1213]"
-                                  }
-                                ]
+                                "@value": "type_1"
                               }
                             ]
                           }
@@ -580,7 +438,7 @@
                             ],
                             "http://a.ml/vocabularies/shapes#items": [
                               {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/notRequiredRepeatable/array/schema/scalar/items",
+                                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/notRequiredRepeatable/array/schema/items/scalar/items",
                                 "@type": [
                                   "http://a.ml/vocabularies/shapes#ScalarShape",
                                   "http://www.w3.org/ns/shacl#Shape",
@@ -979,102 +837,6 @@
                     ],
                     "http://a.ml/vocabularies/http#parameter": [
                       {
-                        "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken",
-                        "@type": [
-                          "http://a.ml/vocabularies/http#Parameter",
-                          "http://a.ml/vocabularies/document#DomainElement"
-                        ],
-                        "http://schema.org/name": [
-                          {
-                            "@value": "nextPageToken"
-                          }
-                        ],
-                        "http://a.ml/vocabularies/http#paramName": [
-                          {
-                            "@value": "nextPageToken"
-                          }
-                        ],
-                        "http://schema.org/description": [
-                          {
-                            "@value": "The `nextPageToken` is a web safe encoded cursor to the next entry in the database.\nIt can be obtained by requesting paginated resource and used in next request to get\nnext results page.\n"
-                          }
-                        ],
-                        "http://www.w3.org/ns/hydra/core#required": [
-                          {
-                            "@value": false
-                          }
-                        ],
-                        "http://a.ml/vocabularies/http#binding": [
-                          {
-                            "@value": "query"
-                          }
-                        ],
-                        "http://a.ml/vocabularies/http#schema": [
-                          {
-                            "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken/scalar/schema",
-                            "@type": [
-                              "http://a.ml/vocabularies/shapes#ScalarShape",
-                              "http://www.w3.org/ns/shacl#Shape",
-                              "http://a.ml/vocabularies/shapes#Shape",
-                              "http://a.ml/vocabularies/document#DomainElement"
-                            ],
-                            "http://www.w3.org/ns/shacl#datatype": [
-                              {
-                                "@id": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ],
-                            "http://www.w3.org/ns/shacl#pattern": [
-                              {
-                                "@value": "^[a-zA-Z0-9]+$"
-                              }
-                            ],
-                            "http://www.w3.org/ns/shacl#name": [
-                              {
-                                "@value": "schema"
-                              }
-                            ],
-                            "http://schema.org/description": [
-                              {
-                                "@value": "The `nextPageToken` is a web safe encoded cursor to the next entry in the database.\nIt can be obtained by requesting paginated resource and used in next request to get\nnext results page.\n"
-                              }
-                            ],
-                            "http://a.ml/vocabularies/document#examples": [
-                              {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken/scalar/schema/example/default-example",
-                                "@type": [
-                                  "http://a.ml/vocabularies/document#Example",
-                                  "http://a.ml/vocabularies/document#DomainElement"
-                                ],
-                                "http://a.ml/vocabularies/document#strict": [
-                                  {
-                                    "@value": true
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/document#structuredValue": [
-                                  {
-                                    "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken/scalar/schema/example/default-example/scalar_1",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Scalar"
-                                    ],
-                                    "http://a.ml/vocabularies/data#value": [
-                                      {
-                                        "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA",
-                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://www.w3.org/ns/shacl#raw": [
-                                  {
-                                    "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA"
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
                         "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/limit",
                         "@type": [
                           "http://a.ml/vocabularies/http#Parameter",
@@ -1308,6 +1070,102 @@
                             ]
                           }
                         ]
+                      },
+                      {
+                        "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken",
+                        "@type": [
+                          "http://a.ml/vocabularies/http#Parameter",
+                          "http://a.ml/vocabularies/document#DomainElement"
+                        ],
+                        "http://schema.org/name": [
+                          {
+                            "@value": "nextPageToken"
+                          }
+                        ],
+                        "http://a.ml/vocabularies/http#paramName": [
+                          {
+                            "@value": "nextPageToken"
+                          }
+                        ],
+                        "http://schema.org/description": [
+                          {
+                            "@value": "The `nextPageToken` is a web safe encoded cursor to the next entry in the database.\nIt can be obtained by requesting paginated resource and used in next request to get\nnext results page.\n"
+                          }
+                        ],
+                        "http://www.w3.org/ns/hydra/core#required": [
+                          {
+                            "@value": false
+                          }
+                        ],
+                        "http://a.ml/vocabularies/http#binding": [
+                          {
+                            "@value": "query"
+                          }
+                        ],
+                        "http://a.ml/vocabularies/http#schema": [
+                          {
+                            "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken/scalar/schema",
+                            "@type": [
+                              "http://a.ml/vocabularies/shapes#ScalarShape",
+                              "http://www.w3.org/ns/shacl#Shape",
+                              "http://a.ml/vocabularies/shapes#Shape",
+                              "http://a.ml/vocabularies/document#DomainElement"
+                            ],
+                            "http://www.w3.org/ns/shacl#datatype": [
+                              {
+                                "@id": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ],
+                            "http://www.w3.org/ns/shacl#pattern": [
+                              {
+                                "@value": "^[a-zA-Z0-9]+$"
+                              }
+                            ],
+                            "http://www.w3.org/ns/shacl#name": [
+                              {
+                                "@value": "schema"
+                              }
+                            ],
+                            "http://schema.org/description": [
+                              {
+                                "@value": "The `nextPageToken` is a web safe encoded cursor to the next entry in the database.\nIt can be obtained by requesting paginated resource and used in next request to get\nnext results page.\n"
+                              }
+                            ],
+                            "http://a.ml/vocabularies/document#examples": [
+                              {
+                                "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken/scalar/schema/example/default-example",
+                                "@type": [
+                                  "http://a.ml/vocabularies/document#Example",
+                                  "http://a.ml/vocabularies/document#DomainElement"
+                                ],
+                                "http://a.ml/vocabularies/document#strict": [
+                                  {
+                                    "@value": true
+                                  }
+                                ],
+                                "http://a.ml/vocabularies/document#structuredValue": [
+                                  {
+                                    "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/request/parameter/nextPageToken/scalar/schema/example/default-example/scalar_1",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/data#Scalar"
+                                    ],
+                                    "http://a.ml/vocabularies/data#value": [
+                                      {
+                                        "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA",
+                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "http://www.w3.org/ns/shacl#raw": [
+                                  {
+                                    "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA"
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
                       }
                     ],
                     "http://a.ml/vocabularies/http#payload": []
@@ -1362,6 +1220,71 @@
                               }
                             ],
                             "http://www.w3.org/ns/shacl#property": [
+                              {
+                                "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/200/application%2Fjson/schema/property/items",
+                                "@type": [
+                                  "http://www.w3.org/ns/shacl#PropertyShape",
+                                  "http://www.w3.org/ns/shacl#Shape",
+                                  "http://a.ml/vocabularies/shapes#Shape"
+                                ],
+                                "http://www.w3.org/ns/shacl#path": [
+                                  {
+                                    "@id": "http://a.ml/vocabularies/data#items"
+                                  }
+                                ],
+                                "http://a.ml/vocabularies/shapes#range": [
+                                  {
+                                    "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/200/application%2Fjson/schema/property/items/array/items",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/shapes#ArrayShape",
+                                      "http://www.w3.org/ns/shacl#Shape",
+                                      "http://a.ml/vocabularies/shapes#Shape",
+                                      "http://a.ml/vocabularies/document#DomainElement"
+                                    ],
+                                    "http://a.ml/vocabularies/shapes#items": [
+                                      {
+                                        "@id": "file://demo/api.raml#/declarations/types/Person/linked_2",
+                                        "@type": [
+                                          "http://www.w3.org/ns/shacl#NodeShape",
+                                          "http://www.w3.org/ns/shacl#Shape",
+                                          "http://a.ml/vocabularies/shapes#Shape",
+                                          "http://a.ml/vocabularies/document#DomainElement"
+                                        ],
+                                        "http://a.ml/vocabularies/document#link-target": [
+                                          {
+                                            "@id": "file://demo/api.raml#/declarations/types/Person"
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/document#link-label": [
+                                          {
+                                            "@value": "Person"
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "http://www.w3.org/ns/shacl#name": [
+                                      {
+                                        "@value": "items"
+                                      }
+                                    ],
+                                    "http://schema.org/description": [
+                                      {
+                                        "@value": "Contains a list of objects for this method."
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "http://www.w3.org/ns/shacl#minCount": [
+                                  {
+                                    "@value": 1
+                                  }
+                                ],
+                                "http://www.w3.org/ns/shacl#name": [
+                                  {
+                                    "@value": "items"
+                                  }
+                                ]
+                              },
                               {
                                 "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/200/application%2Fjson/schema/property/nextPageToken",
                                 "@type": [
@@ -1441,117 +1364,6 @@
                                 "http://www.w3.org/ns/shacl#name": [
                                   {
                                     "@value": "nextPageToken"
-                                  }
-                                ]
-                              },
-                              {
-                                "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/200/application%2Fjson/schema/property/items",
-                                "@type": [
-                                  "http://www.w3.org/ns/shacl#PropertyShape",
-                                  "http://www.w3.org/ns/shacl#Shape",
-                                  "http://a.ml/vocabularies/shapes#Shape"
-                                ],
-                                "http://www.w3.org/ns/shacl#path": [
-                                  {
-                                    "@id": "http://a.ml/vocabularies/data#items"
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/shapes#range": [
-                                  {
-                                    "@id": "file://demo/api.raml#/web-api/end-points/%2Fpeople/get/200/application%2Fjson/schema/property/items/array/items",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/shapes#ArrayShape",
-                                      "http://www.w3.org/ns/shacl#Shape",
-                                      "http://a.ml/vocabularies/shapes#Shape",
-                                      "http://a.ml/vocabularies/document#DomainElement"
-                                    ],
-                                    "http://a.ml/vocabularies/shapes#items": [
-                                      {
-                                        "@id": "file://demo/api.raml#/declarations/types/Person",
-                                        "@type": [
-                                          "http://www.w3.org/ns/shacl#NodeShape",
-                                          "http://www.w3.org/ns/shacl#Shape",
-                                          "http://a.ml/vocabularies/shapes#Shape",
-                                          "http://a.ml/vocabularies/document#DomainElement"
-                                        ],
-                                        "http://www.w3.org/ns/shacl#closed": [
-                                          {
-                                            "@value": false
-                                          }
-                                        ],
-                                        "http://www.w3.org/ns/shacl#property": [
-                                          {
-                                            "@id": "file://demo/api.raml#/declarations/types/Person/property/name",
-                                            "@type": [
-                                              "http://www.w3.org/ns/shacl#PropertyShape",
-                                              "http://www.w3.org/ns/shacl#Shape",
-                                              "http://a.ml/vocabularies/shapes#Shape"
-                                            ],
-                                            "http://www.w3.org/ns/shacl#path": [
-                                              {
-                                                "@id": "http://a.ml/vocabularies/data#name"
-                                              }
-                                            ],
-                                            "http://a.ml/vocabularies/shapes#range": [
-                                              {
-                                                "@id": "file://demo/api.raml#/declarations/types/Person/property/name/scalar/name",
-                                                "@type": [
-                                                  "http://a.ml/vocabularies/shapes#ScalarShape",
-                                                  "http://www.w3.org/ns/shacl#Shape",
-                                                  "http://a.ml/vocabularies/shapes#Shape",
-                                                  "http://a.ml/vocabularies/document#DomainElement"
-                                                ],
-                                                "http://www.w3.org/ns/shacl#datatype": [
-                                                  {
-                                                    "@id": "http://www.w3.org/2001/XMLSchema#string"
-                                                  }
-                                                ],
-                                                "http://www.w3.org/ns/shacl#name": [
-                                                  {
-                                                    "@value": "name"
-                                                  }
-                                                ]
-                                              }
-                                            ],
-                                            "http://www.w3.org/ns/shacl#minCount": [
-                                              {
-                                                "@value": 1
-                                              }
-                                            ],
-                                            "http://www.w3.org/ns/shacl#name": [
-                                              {
-                                                "@value": "name"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://www.w3.org/ns/shacl#name": [
-                                          {
-                                            "@value": "Person"
-                                          }
-                                        ]
-                                      }
-                                    ],
-                                    "http://www.w3.org/ns/shacl#name": [
-                                      {
-                                        "@value": "items"
-                                      }
-                                    ],
-                                    "http://schema.org/description": [
-                                      {
-                                        "@value": "Contains a list of objects for this method."
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://www.w3.org/ns/shacl#minCount": [
-                                  {
-                                    "@value": 1
-                                  }
-                                ],
-                                "http://www.w3.org/ns/shacl#name": [
-                                  {
-                                    "@value": "items"
                                   }
                                 ]
                               }
@@ -2686,6 +2498,748 @@
         ]
       }
     ],
+    "http://a.ml/vocabularies/document#references": [
+      {
+        "@id": "file://demo/traits/pagination.raml#",
+        "@type": [
+          "http://a.ml/vocabularies/document#TraitFragment",
+          "http://a.ml/vocabularies/document#Fragment",
+          "http://a.ml/vocabularies/document#Unit"
+        ],
+        "http://a.ml/vocabularies/document#encodes": [
+          {
+            "@id": "file://demo/traits/pagination.raml#/trait",
+            "@type": [
+              "http://a.ml/vocabularies/document#Trait",
+              "http://a.ml/vocabularies/document#AbstractDeclaration",
+              "http://a.ml/vocabularies/document#DomainElement"
+            ],
+            "http://schema.org/name": [
+              {
+                "@value": "trait"
+              }
+            ],
+            "http://a.ml/vocabularies/document#dataNode": [
+              {
+                "@id": "file://demo/traits/pagination.raml#/trait/object_1",
+                "@type": [
+                  "http://a.ml/vocabularies/data#Object"
+                ],
+                "http://a.ml/vocabularies/data#description": [
+                  {
+                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/scalar_2",
+                    "@type": [
+                      "http://a.ml/vocabularies/data#Scalar"
+                    ],
+                    "http://a.ml/vocabularies/data#value": [
+                      {
+                        "@value": "The collection of <<resourcePathName>>.",
+                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                      }
+                    ]
+                  }
+                ],
+                "http://a.ml/vocabularies/data#queryParameters": [
+                  {
+                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3",
+                    "@type": [
+                      "http://a.ml/vocabularies/data#Object"
+                    ],
+                    "http://a.ml/vocabularies/data#limit": [
+                      {
+                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4",
+                        "@type": [
+                          "http://a.ml/vocabularies/data#Object"
+                        ],
+                        "http://a.ml/vocabularies/data#default": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_10",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "25",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#description": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_6",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "Limit in the response list",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#example": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_9",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "100",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#maximum": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_7",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "300",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#minimum": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_8",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "1",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#required": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_11",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "false",
+                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#type": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_5",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "number",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "http://a.ml/vocabularies/data#nextPageToken": [
+                      {
+                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19",
+                        "@type": [
+                          "http://a.ml/vocabularies/data#Object"
+                        ],
+                        "http://a.ml/vocabularies/data#description": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_22",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "The `nextPageToken` is a web safe encoded cursor to the next entry in the database.\nIt can be obtained by requesting paginated resource and used in next request to get\nnext results page.\n",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#example": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_21",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#pattern": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_23",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "[a-zA-Z0-9]+",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#required": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_24",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "false",
+                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#type": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_20",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "string",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "http://a.ml/vocabularies/data#start": [
+                      {
+                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12",
+                        "@type": [
+                          "http://a.ml/vocabularies/data#Object"
+                        ],
+                        "http://a.ml/vocabularies/data#default": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_17",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "0",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#description": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_14",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "The start entry of the list",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#example": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_16",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "25",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#minimum": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_15",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "0",
+                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#required": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_18",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "false",
+                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#type": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_13",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "number",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "http://a.ml/vocabularies/data#responses": [
+                  {
+                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25",
+                    "@type": [
+                      "http://a.ml/vocabularies/data#Object"
+                    ],
+                    "http://a.ml/vocabularies/data#200": [
+                      {
+                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26",
+                        "@type": [
+                          "http://a.ml/vocabularies/data#Object"
+                        ],
+                        "http://a.ml/vocabularies/data#body": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Object"
+                            ],
+                            "http://a.ml/vocabularies/data#application%2Fjson": [
+                              {
+                                "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29",
+                                "@type": [
+                                  "http://a.ml/vocabularies/data#Object"
+                                ],
+                                "http://a.ml/vocabularies/data#properties": [
+                                  {
+                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/data#Object"
+                                    ],
+                                    "http://a.ml/vocabularies/data#items": [
+                                      {
+                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32",
+                                        "@type": [
+                                          "http://a.ml/vocabularies/data#Object"
+                                        ],
+                                        "http://a.ml/vocabularies/data#description": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_35",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "Contains a list of objects for this method.",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#items": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_36",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "<<resourceType>>",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#required": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_34",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "true",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#type": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_33",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "array",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "http://a.ml/vocabularies/data#nextPageToken": [
+                                      {
+                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37",
+                                        "@type": [
+                                          "http://a.ml/vocabularies/data#Object"
+                                        ],
+                                        "http://a.ml/vocabularies/data#description": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_41",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "The next page token is a web safe encoded cursor to the next entry in the database.\nUse it in the next request to obtain next page of the results.\n",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#example": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_40",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#required": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_39",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "true",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#type": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_38",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "string",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "http://a.ml/vocabularies/data#type": [
+                                  {
+                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/scalar_30",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/data#Scalar"
+                                    ],
+                                    "http://a.ml/vocabularies/data#value": [
+                                      {
+                                        "@value": "object",
+                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#description": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/scalar_27",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "Paginated response containing a single page of the result.\nBy default one page of the results contains 25 items. You can extend it by setting a\n`limit` query parameter in your request.\nWhen changing parameters while using the `nextPageToken` the `nextPageToken` will be ignored\nand new query will be performed. Queries with `nextPageToken` should contain the same set\nof parameters as the first request.\n",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ],
+                    "http://a.ml/vocabularies/data#400": [
+                      {
+                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42",
+                        "@type": [
+                          "http://a.ml/vocabularies/data#Object"
+                        ],
+                        "http://a.ml/vocabularies/data#body": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Object"
+                            ],
+                            "http://a.ml/vocabularies/data#application%2Fjson": [
+                              {
+                                "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45",
+                                "@type": [
+                                  "http://a.ml/vocabularies/data#Object"
+                                ],
+                                "http://a.ml/vocabularies/data#displayName": [
+                                  {
+                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/scalar_46",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/data#Scalar"
+                                    ],
+                                    "http://a.ml/vocabularies/data#value": [
+                                      {
+                                        "@value": "Invalid",
+                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "http://a.ml/vocabularies/data#properties": [
+                                  {
+                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/data#Object"
+                                    ],
+                                    "http://a.ml/vocabularies/data#error": [
+                                      {
+                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49",
+                                        "@type": [
+                                          "http://a.ml/vocabularies/data#Object"
+                                        ],
+                                        "http://a.ml/vocabularies/data#description": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_53",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "Indicate that the response is errored.",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#example": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_52",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "true",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#required": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_51",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "true",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#type": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_50",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "boolean",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ],
+                                    "http://a.ml/vocabularies/data#message": [
+                                      {
+                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54",
+                                        "@type": [
+                                          "http://a.ml/vocabularies/data#Object"
+                                        ],
+                                        "http://a.ml/vocabularies/data#description": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_56",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "The error message associated with the error.",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#example": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_57",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "The `limit` parameter is invalid. Please, provide a number between 1 and 300.",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#required": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_58",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "true",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
+                                              }
+                                            ]
+                                          }
+                                        ],
+                                        "http://a.ml/vocabularies/data#type": [
+                                          {
+                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_55",
+                                            "@type": [
+                                              "http://a.ml/vocabularies/data#Scalar"
+                                            ],
+                                            "http://a.ml/vocabularies/data#value": [
+                                              {
+                                                "@value": "string",
+                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ],
+                                "http://a.ml/vocabularies/data#type": [
+                                  {
+                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/scalar_47",
+                                    "@type": [
+                                      "http://a.ml/vocabularies/data#Scalar"
+                                    ],
+                                    "http://a.ml/vocabularies/data#value": [
+                                      {
+                                        "@value": "object",
+                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ],
+                        "http://a.ml/vocabularies/data#description": [
+                          {
+                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/scalar_43",
+                            "@type": [
+                              "http://a.ml/vocabularies/data#Scalar"
+                            ],
+                            "http://a.ml/vocabularies/data#value": [
+                              {
+                                "@value": "The error response when one of the parameters is invalid and can't be parsed.\nNothing can be done at this time except correcting the request to send valid data.\n",
+                                "@type": "http://www.w3.org/2001/XMLSchema#string"
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ],
+            "http://a.ml/vocabularies/document#variable": [
+              {
+                "@value": "resourceType"
+              },
+              {
+                "@value": "resourcePathName"
+              }
+            ]
+          }
+        ],
+        "http://a.ml/vocabularies/document#usage": [
+          {
+            "@value": "This trait is to be used when the resource is paginated that is the edpoint producses\na list of resources in the response.\nEvery paginated response contains a `nextPageToken` property that should be used in pagination\nto request for next page of the results and `items` which is a list of resources.\nThe `items` property is always defined, even if the response is empty. Therefore the `404`\nresponse in this case is not possible. Clients need to handle empty responses by their own.\nIt is crutial that the subsequent requests contain the same set of parameters (like `limit`\nor `start`) because if this values will change then the `nextPageToken` will be revalidated\nand pagination will start from the first page.\n"
+          }
+        ]
+      }
+    ],
     "http://a.ml/vocabularies/document#declares": [
       {
         "@id": "file://demo/api.raml#/declarations/annotations/MarkAnnotation",
@@ -3733,746 +4287,165 @@
             "@value": "resourcePathName"
           }
         ]
-      }
-    ],
-    "http://a.ml/vocabularies/document#references": [
+      },
       {
-        "@id": "file://demo/traits/pagination.raml#",
+        "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/array/default-array",
         "@type": [
-          "http://a.ml/vocabularies/document#TraitFragment",
-          "http://a.ml/vocabularies/document#Fragment",
-          "http://a.ml/vocabularies/document#Unit"
+          "http://a.ml/vocabularies/shapes#ArrayShape",
+          "http://www.w3.org/ns/shacl#Shape",
+          "http://a.ml/vocabularies/shapes#Shape",
+          "http://a.ml/vocabularies/document#DomainElement"
         ],
-        "http://a.ml/vocabularies/document#encodes": [
+        "http://a.ml/vocabularies/shapes#items": [
           {
-            "@id": "file://demo/traits/pagination.raml#/trait",
+            "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/array/default-array/items/scalar/default-scalar",
             "@type": [
-              "http://a.ml/vocabularies/document#Trait",
-              "http://a.ml/vocabularies/document#AbstractDeclaration",
+              "http://a.ml/vocabularies/shapes#ScalarShape",
+              "http://www.w3.org/ns/shacl#Shape",
+              "http://a.ml/vocabularies/shapes#Shape",
+              "http://a.ml/vocabularies/document#DomainElement"
+            ],
+            "http://www.w3.org/ns/shacl#datatype": [
+              {
+                "@id": "http://www.w3.org/2001/XMLSchema#integer"
+              }
+            ]
+          }
+        ],
+        "http://a.ml/vocabularies/document#examples": [
+          {
+            "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example",
+            "@type": [
+              "http://a.ml/vocabularies/document#Example",
               "http://a.ml/vocabularies/document#DomainElement"
             ],
             "http://schema.org/name": [
               {
-                "@value": "trait"
+                "@value": "Some-test-example"
               }
             ],
-            "http://a.ml/vocabularies/document#dataNode": [
+            "http://a.ml/vocabularies/document#strict": [
               {
-                "@id": "file://demo/traits/pagination.raml#/trait/object_1",
+                "@value": true
+              }
+            ],
+            "http://a.ml/vocabularies/document#structuredValue": [
+              {
+                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1",
                 "@type": [
-                  "http://a.ml/vocabularies/data#Object"
+                  "http://a.ml/vocabularies/data#Array",
+                  "http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"
                 ],
-                "http://a.ml/vocabularies/data#description": [
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#member": [
                   {
-                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/scalar_2",
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_2",
                     "@type": [
                       "http://a.ml/vocabularies/data#Scalar"
                     ],
                     "http://a.ml/vocabularies/data#value": [
                       {
-                        "@value": "The collection of <<resourcePathName>>.",
-                        "@type": "http://www.w3.org/2001/XMLSchema#string"
+                        "@value": "123",
+                        "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                      }
+                    ]
+                  },
+                  {
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_3",
+                    "@type": [
+                      "http://a.ml/vocabularies/data#Scalar"
+                    ],
+                    "http://a.ml/vocabularies/data#value": [
+                      {
+                        "@value": "456",
+                        "@type": "http://www.w3.org/2001/XMLSchema#integer"
                       }
                     ]
                   }
                 ],
-                "http://a.ml/vocabularies/data#queryParameters": [
+                "http://a.ml/vocabularies/data#pos0": [
                   {
-                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3",
-                    "@type": [
-                      "http://a.ml/vocabularies/data#Object"
-                    ],
-                    "http://a.ml/vocabularies/data#limit": [
-                      {
-                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4",
-                        "@type": [
-                          "http://a.ml/vocabularies/data#Object"
-                        ],
-                        "http://a.ml/vocabularies/data#default": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_10",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "25",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#description": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_6",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "Limit in the response list",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#example": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_9",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "100",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#maximum": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_7",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "300",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#minimum": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_8",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "1",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#required": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_11",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "false",
-                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#type": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_4/scalar_5",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "number",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ],
-                    "http://a.ml/vocabularies/data#nextPageToken": [
-                      {
-                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19",
-                        "@type": [
-                          "http://a.ml/vocabularies/data#Object"
-                        ],
-                        "http://a.ml/vocabularies/data#description": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_22",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "The `nextPageToken` is a web safe encoded cursor to the next entry in the database.\nIt can be obtained by requesting paginated resource and used in next request to get\nnext results page.\n",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#example": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_21",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#pattern": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_23",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "[a-zA-Z0-9]+",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#required": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_24",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "false",
-                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#type": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_19/scalar_20",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "string",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ],
-                    "http://a.ml/vocabularies/data#start": [
-                      {
-                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12",
-                        "@type": [
-                          "http://a.ml/vocabularies/data#Object"
-                        ],
-                        "http://a.ml/vocabularies/data#default": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_17",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "0",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#description": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_14",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "The start entry of the list",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#example": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_16",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "25",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#minimum": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_15",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "0",
-                                "@type": "http://www.w3.org/2001/XMLSchema#integer"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#required": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_18",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "false",
-                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#type": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_3/object_12/scalar_13",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "number",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_2"
                   }
                 ],
-                "http://a.ml/vocabularies/data#responses": [
+                "http://a.ml/vocabularies/data#pos1": [
                   {
-                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25",
-                    "@type": [
-                      "http://a.ml/vocabularies/data#Object"
-                    ],
-                    "http://a.ml/vocabularies/data#200": [
-                      {
-                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26",
-                        "@type": [
-                          "http://a.ml/vocabularies/data#Object"
-                        ],
-                        "http://a.ml/vocabularies/data#body": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Object"
-                            ],
-                            "http://a.ml/vocabularies/data#application%2Fjson": [
-                              {
-                                "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29",
-                                "@type": [
-                                  "http://a.ml/vocabularies/data#Object"
-                                ],
-                                "http://a.ml/vocabularies/data#properties": [
-                                  {
-                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Object"
-                                    ],
-                                    "http://a.ml/vocabularies/data#items": [
-                                      {
-                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Object"
-                                        ],
-                                        "http://a.ml/vocabularies/data#description": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_35",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "Contains a list of objects for this method.",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#items": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_36",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "<<resourceType>>",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#required": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_34",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "true",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#type": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_32/scalar_33",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "array",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ],
-                                    "http://a.ml/vocabularies/data#nextPageToken": [
-                                      {
-                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Object"
-                                        ],
-                                        "http://a.ml/vocabularies/data#description": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_41",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "The next page token is a web safe encoded cursor to the next entry in the database.\nUse it in the next request to obtain next page of the results.\n",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#example": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_40",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "CiAKGjBpNDd2Nmp2Zml2cXRwYjBpOXA",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#required": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_39",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "true",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#type": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/object_31/object_37/scalar_38",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "string",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/data#type": [
-                                  {
-                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/object_28/object_29/scalar_30",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Scalar"
-                                    ],
-                                    "http://a.ml/vocabularies/data#value": [
-                                      {
-                                        "@value": "object",
-                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#description": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_26/scalar_27",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "Paginated response containing a single page of the result.\nBy default one page of the results contains 25 items. You can extend it by setting a\n`limit` query parameter in your request.\nWhen changing parameters while using the `nextPageToken` the `nextPageToken` will be ignored\nand new query will be performed. Queries with `nextPageToken` should contain the same set\nof parameters as the first request.\n",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ],
-                    "http://a.ml/vocabularies/data#400": [
-                      {
-                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42",
-                        "@type": [
-                          "http://a.ml/vocabularies/data#Object"
-                        ],
-                        "http://a.ml/vocabularies/data#body": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Object"
-                            ],
-                            "http://a.ml/vocabularies/data#application%2Fjson": [
-                              {
-                                "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45",
-                                "@type": [
-                                  "http://a.ml/vocabularies/data#Object"
-                                ],
-                                "http://a.ml/vocabularies/data#displayName": [
-                                  {
-                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/scalar_46",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Scalar"
-                                    ],
-                                    "http://a.ml/vocabularies/data#value": [
-                                      {
-                                        "@value": "Invalid",
-                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/data#properties": [
-                                  {
-                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Object"
-                                    ],
-                                    "http://a.ml/vocabularies/data#error": [
-                                      {
-                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Object"
-                                        ],
-                                        "http://a.ml/vocabularies/data#description": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_53",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "Indicate that the response is errored.",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#example": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_52",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "true",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#required": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_51",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "true",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#type": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_49/scalar_50",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "boolean",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ],
-                                    "http://a.ml/vocabularies/data#message": [
-                                      {
-                                        "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54",
-                                        "@type": [
-                                          "http://a.ml/vocabularies/data#Object"
-                                        ],
-                                        "http://a.ml/vocabularies/data#description": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_56",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "The error message associated with the error.",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#example": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_57",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "The `limit` parameter is invalid. Please, provide a number between 1 and 300.",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#required": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_58",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "true",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-                                              }
-                                            ]
-                                          }
-                                        ],
-                                        "http://a.ml/vocabularies/data#type": [
-                                          {
-                                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/object_48/object_54/scalar_55",
-                                            "@type": [
-                                              "http://a.ml/vocabularies/data#Scalar"
-                                            ],
-                                            "http://a.ml/vocabularies/data#value": [
-                                              {
-                                                "@value": "string",
-                                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                              }
-                                            ]
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                ],
-                                "http://a.ml/vocabularies/data#type": [
-                                  {
-                                    "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/object_44/object_45/scalar_47",
-                                    "@type": [
-                                      "http://a.ml/vocabularies/data#Scalar"
-                                    ],
-                                    "http://a.ml/vocabularies/data#value": [
-                                      {
-                                        "@value": "object",
-                                        "@type": "http://www.w3.org/2001/XMLSchema#string"
-                                      }
-                                    ]
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ],
-                        "http://a.ml/vocabularies/data#description": [
-                          {
-                            "@id": "file://demo/traits/pagination.raml#/trait/object_1/object_25/object_42/scalar_43",
-                            "@type": [
-                              "http://a.ml/vocabularies/data#Scalar"
-                            ],
-                            "http://a.ml/vocabularies/data#value": [
-                              {
-                                "@value": "The error response when one of the parameters is invalid and can't be parsed.\nNothing can be done at this time except correcting the request to send valid data.\n",
-                                "@type": "http://www.w3.org/2001/XMLSchema#string"
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Some-test-example/array_1/scalar_3"
                   }
                 ]
               }
             ],
-            "http://a.ml/vocabularies/document#variable": [
+            "http://www.w3.org/ns/shacl#raw": [
               {
-                "@value": "resourceType"
-              },
-              {
-                "@value": "resourcePathName"
+                "@value": "[123, 456]"
               }
             ]
-          }
-        ],
-        "http://a.ml/vocabularies/document#usage": [
+          },
           {
-            "@value": "This trait is to be used when the resource is paginated that is the edpoint producses\na list of resources in the response.\nEvery paginated response contains a `nextPageToken` property that should be used in pagination\nto request for next page of the results and `items` which is a list of resources.\nThe `items` property is always defined, even if the response is empty. Therefore the `404`\nresponse in this case is not possible. Clients need to handle empty responses by their own.\nIt is crutial that the subsequent requests contain the same set of parameters (like `limit`\nor `start`) because if this values will change then the `nextPageToken` will be revalidated\nand pagination will start from the first page.\n"
+            "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example",
+            "@type": [
+              "http://a.ml/vocabularies/document#Example",
+              "http://a.ml/vocabularies/document#DomainElement"
+            ],
+            "http://schema.org/name": [
+              {
+                "@value": "Other-example"
+              }
+            ],
+            "http://a.ml/vocabularies/document#strict": [
+              {
+                "@value": true
+              }
+            ],
+            "http://a.ml/vocabularies/document#structuredValue": [
+              {
+                "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1",
+                "@type": [
+                  "http://a.ml/vocabularies/data#Array",
+                  "http://www.w3.org/1999/02/22-rdf-syntax-ns#Seq"
+                ],
+                "http://www.w3.org/1999/02/22-rdf-syntax-ns#member": [
+                  {
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_2",
+                    "@type": [
+                      "http://a.ml/vocabularies/data#Scalar"
+                    ],
+                    "http://a.ml/vocabularies/data#value": [
+                      {
+                        "@value": "1011",
+                        "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                      }
+                    ]
+                  },
+                  {
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_3",
+                    "@type": [
+                      "http://a.ml/vocabularies/data#Scalar"
+                    ],
+                    "http://a.ml/vocabularies/data#value": [
+                      {
+                        "@value": "1213",
+                        "@type": "http://www.w3.org/2001/XMLSchema#integer"
+                      }
+                    ]
+                  }
+                ],
+                "http://a.ml/vocabularies/data#pos0": [
+                  {
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_2"
+                  }
+                ],
+                "http://a.ml/vocabularies/data#pos1": [
+                  {
+                    "@id": "file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/get/request/parameter/numericRepeatable/array/schema/example/Other-example/array_1/scalar_3"
+                  }
+                ]
+              }
+            ],
+            "http://www.w3.org/ns/shacl#raw": [
+              {
+                "@value": "[1011, 1213]"
+              }
+            ]
           }
         ]
       }
