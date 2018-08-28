@@ -77,7 +77,7 @@
 
       test('Computes _effectivePathParameters', () => {
         assert.typeOf(element._effectivePathParameters, 'array');
-        assert.lengthOf(element._effectivePathParameters, 1);
+        assert.lengthOf(element._effectivePathParameters, 2);
       });
 
       test('Computes hasPathParameters', () => {
@@ -127,10 +127,11 @@
       });
 
       test('_effectivePathParameters contains both parameters arrays', () => {
-        assert.lengthOf(element._effectivePathParameters, 2);
+        assert.lengthOf(element._effectivePathParameters, 3);
         const p = element._effectivePathParameters;
-        assert.equal(p[0]['@id'], 'file://demo/api.raml#/web-api/http%3A%2F%2F%7Benvironment%7D.api.domain.com%2F%7Bversion%7D%2F/parameter/environment');
-        assert.equal(p[1]['@id'], 'file://demo/api.raml#/web-api/end-points/%2Ftest-parameters%2F%7Bfeature%7D/parameter/feature');
+        assert.equal(p[0]['@id'], 'amf://id#118');
+        assert.equal(p[1]['@id'], 'amf://id#124');
+        assert.equal(p[2]['@id'], 'amf://id#51');
       });
 
       test('Computes hasPathParameters', () => {
