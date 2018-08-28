@@ -1,3 +1,25 @@
+<a name="2.0.5"></a>
+## 2.0.5 (2018-08-28)
+
+
+### Docs
+
+* Updateding documentation ([870740195c3a7794b6a917309775de6b93deca02](https://github.com/advanced-rest-client/api-parameters-document/commit/870740195c3a7794b6a917309775de6b93deca02))
+* Updating documentation ([49768c0adff27a6ad213d061eab583b326c90eee](https://github.com/advanced-rest-client/api-parameters-document/commit/49768c0adff27a6ad213d061eab583b326c90eee))
+
+### Fix
+
+* Fixing tests ([adfe6f7b06ec38664d95215b4fb697e608f00766](https://github.com/advanced-rest-client/api-parameters-document/commit/adfe6f7b06ec38664d95215b4fb697e608f00766))
+
+### Update
+
+* Added sauce configuration for tests ([6a16244f85df7ef331c63fa98d87cbc27f748350](https://github.com/advanced-rest-client/api-parameters-document/commit/6a16244f85df7ef331c63fa98d87cbc27f748350))
+* Making the whole section title clickable ([21e2cdf94e839afb260ec97f98637b8ff0e75ae0](https://github.com/advanced-rest-client/api-parameters-document/commit/21e2cdf94e839afb260ec97f98637b8ff0e75ae0))
+* Removing mock interactions helper from test ([580fe65710fe263061cd0ca67bc3590ec3568860](https://github.com/advanced-rest-client/api-parameters-document/commit/580fe65710fe263061cd0ca67bc3590ec3568860))
+* Updating styling API ([1ea67e2ee11f451013aa7693373cb94d72a15508](https://github.com/advanced-rest-client/api-parameters-document/commit/1ea67e2ee11f451013aa7693373cb94d72a15508))
+
+
+
 <a name="2.0.4"></a>
 ## 2.0.4 (2018-07-18)
 

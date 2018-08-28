@@ -13,19 +13,18 @@
     <link rel="import" href="../../paper-styles/typography.html">
     <link rel="import" href="../../raml-aware/raml-aware.html">
     <link rel="import" href="../../api-navigation/api-navigation.html">
+    <link rel="import" href="../../api-console-default-theme/api-console-default-theme.html">
+    <link rel="import" href="../../paper-dropdown-menu/paper-dropdown-menu.html">
+    <link rel="import" href="../../paper-item/paper-item.html">
+    <link rel="import" href="../../paper-listbox/paper-listbox.html">
+    <link rel="import" href="../../neon-animation/web-animations.html">
     <link rel="import" href="../api-parameters-document.html">
     <custom-style>
       <style is="custom-style" include="demo-pages-shared-styles">
-      :root {
-        --arc-font-title: {
-          @apply --paper-font-title;
-        };
-        --arc-font-subhead: {
-          @apply --paper-font-subhead;
-        };
-        --arc-font-body1: {
-          @apply --paper-font-body1;
-        };
+      html,
+      body {
+        margin: 0;
+        padding: 0;
       }
 
       [role="main"] {
@@ -44,34 +43,80 @@
         margin-left: 40px;
         @apply --layout-flex;
       }
+
+      header {
+        padding: 12px 24px;
+        background-color: #C5E1A5;
+        --iron-icon-fill-color: #3E2723;
+        --paper-input-container-focus-color: #33691E;
+        --paper-input-container-label: {
+          color: #3E2723;
+        };
+        @apply --layout-horizontal;
+        @apply --layout-center;
+      }
+
+      .spacer {
+        @apply --layout-flex;
+      }
       </style>
     </custom-style>
   </head>
   <body>
     <dom-bind id="demo">
       <template is="dom-bind">
+        <header>
+          <paper-dropdown-menu label="Select demo endpoint">
+            <paper-listbox slot="dropdown-content" id="enpointsList" on-selected-changed="_apiChanged">
+              <paper-item data-src="demo-api.json">Demo api</paper-item>
+              <paper-item data-src="demo-api-compact.json">Demo api - compact model</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+        </header>
+
         <div class="vertical-section-container centered" role="main">
           <api-navigation amf-model="[[amfModel]]" endpoints-opened></api-navigation>
           <template is="dom-if" if="[[hasData]]">
-            <api-parameters-document aware="model" query-opened path-opened base-uri-parameters="[[baseUriParameters]]" endpoint-parameters="[[endpointParameters]]" query-parameters="[[queryParameters]]"></api-parameters-document>
+            <api-parameters-document
+              amf-model="[[amfModel]]"
+              query-opened
+              path-opened
+              base-uri-parameters="[[baseUriParameters]]"
+              endpoint-parameters="[[endpointParameters]]"
+              query-parameters="[[queryParameters]]"></api-parameters-document>
           </template>
           <template is="dom-if" if="[[!hasData]]">
             <p>Select a HTTP method in the navigation to see the demo.</p>
           </template>
         </div>
+
+        <demo-element id="helper" amf-model="{{amfModel}}"></demo-element>
       </template>
     </dom-bind>
     <script>
     (function(app) {
+      const ns = ApiElements.Amf.ns;
+      class DemoElement extends ApiElements.AmfHelperMixin(Polymer.Element) {}
+      window.customElements.define('demo-element', DemoElement);
+
+      app._apiChanged = function(e) {
+        const file = e.target.selectedItem.dataset.src;
+        app._loadFile(file);
+      };
+
       app.hasData = false;
       app._load = function() {
-        fetch('./amf-model.json')
+        document.getElementById('enpointsList').selected = 0;
+      };
+      app._loadFile = function(file) {
+        fetch('./' + file)
         .then((response) => response.json())
         .then((data) => {
           app.amfModel = data;
           this._sendBaseParams(data);
         });
       };
+
       app._navChanged = function(e) {
         const type = e.detail.type;
         if (type === 'method') {
@@ -82,25 +127,21 @@
         }
       };
       app._sendBaseParams = function(data) {
-        const enc = data[0]['http://a.ml/vocabularies/document#encodes'][0];
-        const srv = enc['http://a.ml/vocabularies/http#server'][0];
-        app.baseUriParameters = srv['http://a.ml/vocabularies/http#variable'];
+        const srv = app.$.helper._computeServer(data);
+        app.baseUriParameters = app.$.helper._computeServerVariables(srv);
       };
       app.setData = function(id) {
-        const enc = app.amfModel[0]['http://a.ml/vocabularies/document#encodes'][0];
-        const endpoints = enc['http://a.ml/vocabularies/http#endpoint'];
-        const endpointId = id.substr(0, id.lastIndexOf('/'));
-        const endpoint = endpoints.find((item) => item['@id'] === endpointId);
-        app.endpointParameters = endpoint['http://a.ml/vocabularies/http#parameter'];
-        const methods = endpoint['http://www.w3.org/ns/hydra/core#supportedOperation'];
-        const method = methods.find((item) => item['@id'] === id);
-        const expects = method['http://www.w3.org/ns/hydra/core#expects'];
-        if (!expects) {
+        const webApi = app.$.helper._computeWebApi(app.amfModel);
+        const endpoint = app.$.helper._computeMethodEndpoint(webApi, id);
+        app.endpointParameters = app.$.helper._computeQueryParameters(endpoint);
+        const method = app.$.helper._computeMethodModel(webApi, id);
+        const expect = app.$.helper._computeExpects(method);
+        if (!expect) {
           app.queryParameters = undefined;
           return;
         }
-        const request = expects.find((item) => item['@type'].indexOf('http://a.ml/vocabularies/http#Request') !== -1);
-        app.queryParameters = request['http://a.ml/vocabularies/http#parameter'];
+        const key = app.$.helper._getAmfKey(ns.raml.vocabularies.http + 'parameter');
+        app.queryParameters = app.$.helper._ensureArray(expect[key]);
       };
       window.addEventListener('WebComponentsReady', () => app._load());
       window.addEventListener('api-navigation-selection-changed', app._navChanged);
