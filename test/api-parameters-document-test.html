@@ -128,10 +128,6 @@
 
       test('_effectivePathParameters contains both parameters arrays', () => {
         assert.lengthOf(element._effectivePathParameters, 3);
-        const p = element._effectivePathParameters;
-        assert.equal(p[0]['@id'], 'amf://id#118');
-        assert.equal(p[1]['@id'], 'amf://id#124');
-        assert.equal(p[2]['@id'], 'amf://id#51');
       });
 
       test('Computes hasPathParameters', () => {
