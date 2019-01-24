@@ -35,203 +35,284 @@
 
   <script>
   /* global AmfLoader */
-  suite('api-parameters-document', () => {
+  function getEncodes(model, compact) {
+    if (model instanceof Array) {
+      model = model[0];
+    }
+    const encKey = compact ? 'doc:encodes' : 'http://a.ml/vocabularies/document#encodes';
+    let def = model[encKey];
+    if (def instanceof Array) {
+      def = def[0];
+    }
+    return def;
+  }
+
+  function getServer(enc, compact) {
+    const key = compact ? 'raml-http:server' : 'http://a.ml/vocabularies/http#server';
+    let def = enc[key];
+    if (def instanceof Array) {
+      def = def[0];
+    }
+    return def;
+  }
+
+  function getSrvBaseVariables(srv, compact) {
+    const key = compact ? 'raml-http:variable' : 'http://a.ml/vocabularies/http#variable';
+    let def = srv[key];
+    if (!(def instanceof Array)) {
+      def = [def];
+    }
+    return def;
+  }
+
+  function getMethod(model, compact, endpointIndex, methodIndex) {
+    const enc = getEncodes(model, compact);
+    const key = compact ? 'raml-http:endpoint' : 'http://a.ml/vocabularies/http#endpoint';
+    let endpoints = enc[key];
+    if (!(endpoints instanceof Array)) {
+      endpoints = [endpoints];
+    }
+    const endpoint = endpoints[endpointIndex];
+    const mkey = compact ? 'hydra:supportedOperation' : 'http://www.w3.org/ns/hydra/core#supportedOperation';
+    let methods = endpoint[mkey];
+    if (!(methods instanceof Array)) {
+      methods = [methods];
+    }
+    let method = methods[methodIndex];
+    if (method instanceof Array) {
+      method = method[0];
+    }
+    return method;
+  }
+
+  function getExpects(method, compact) {
+    const key = compact ? 'hydra:expects' : 'http://www.w3.org/ns/hydra/core#expects';
+    let result = method[key];
+    if (result instanceof Array) {
+      result = result[0];
+    }
+    return result;
+  }
+
+  function computeServerVariables(model, compact) {
+    const enc = getEncodes(model, compact);
+    const srv = getServer(enc, compact);
+    return getSrvBaseVariables(srv, compact);
+  }
+
+  function computePathParameters(model, compact, endpointIndex, methodIndex) {
+    const method = getMethod(model, compact, endpointIndex, methodIndex);
+    const key = compact ? 'raml-http:parameter' : 'http://a.ml/vocabularies/http#endpoint';
+    let params = method[key];
+    if (!(params instanceof Array)) {
+      params = [params];
+    }
+    return params;
+  }
+
+  function computeQueryParameters(model, compact, endpointIndex, methodIndex) {
+    const method = getMethod(model, compact, endpointIndex, methodIndex);
+    const expect = getExpects(method, compact);
+    const key = compact ? 'raml-http:parameter' : 'http://a.ml/vocabularies/http#parameter';
+    let params = expect[key];
+    if (!(params instanceof Array)) {
+      params = [params];
+    }
+    return params;
+  }
+
+  suite('Basic', () => {
     let element;
 
-    suite('Basic', () => {
-      test('Renders no params tables without data', (done) => {
-        element = fixture('Basic');
-        flush(() => {
-          const doc = element.shadowRoot.querySelector('api-type-document');
-          assert.notOk(doc);
-          done();
-        });
-      });
+    setup(() => {
+      element = fixture('Basic');
+    });
 
-      test('hasQueryParameters is undefined', () => {
-        assert.isUndefined(element.hasQueryParameters);
-      });
-
-      test('hasPathParameters is undefined', () => {
-        assert.isUndefined(element.hasPathParameters);
+    test('Renders no params tables without data', (done) => {
+      flush(() => {
+        const doc = element.shadowRoot.querySelector('api-type-document');
+        assert.notOk(doc);
+        done();
       });
     });
 
-    suite('Base path parameters', () => {
-      let amf;
-      let baseData;
-      suiteSetup(() => {
-        return AmfLoader.load(1, 0)
-        .then((data) => {
-          amf = data[0];
-          baseData = data[1];
-        });
-      });
-
-      setup((done) => {
-        element = fixture('Basic');
-        element.amfModel = amf;
-        element.baseUriParameters = baseData;
-        flush(() => done());
-      });
-
-      test('Computes _effectivePathParameters', () => {
-        assert.typeOf(element._effectivePathParameters, 'array');
-        assert.lengthOf(element._effectivePathParameters, 2);
-      });
-
-      test('Computes hasPathParameters', () => {
-        assert.isTrue(element.hasPathParameters);
-      });
-
-      test('Renders uri parameters table', () => {
-        const section = element.shadowRoot.querySelector('.uri-parameters');
-        assert.ok(section);
-      });
-
-      test('Parameters are set on table', () => {
-        const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
-        assert.isTrue(doc.type === element._effectivePathParameters);
-      });
-
-      test('Toggle button open the URI section', () => {
-        const button = element.shadowRoot.querySelector('.uri-parameters .section-title-area');
-        button.click();
-        assert.isTrue(element.pathOpened);
-      });
+    test('hasQueryParameters is undefined', () => {
+      assert.isUndefined(element.hasQueryParameters);
     });
 
-    suite('Base path + endpoint path parameters', () => {
-      let amf;
-      let baseData;
-      let pathData;
-      suiteSetup(() => {
-        return AmfLoader.load(0, 0)
-        .then((data) => {
-          amf = data[0];
-          baseData = data[1];
-          pathData = data[2];
+    test('hasPathParameters is undefined', () => {
+      assert.isUndefined(element.hasPathParameters);
+    });
+  });
+
+  suite('Base path parameters', () => {
+    [
+      ['Full model', false],
+      ['Compact model', true]
+    ].forEach((item) => {
+      suite(item[0], () => {
+        let element;
+        setup((done) => {
+          AmfLoader.load(item[1])
+          .then((amf) => {
+            element = fixture('Basic');
+            element.amfModel = amf;
+            element.baseUriParameters = computeServerVariables(amf, item[1]);
+            flush(() => done());
+          });
         });
-      });
 
-      setup((done) => {
-        element = fixture('Basic');
-        element.amfModel = amf;
-        element.baseUriParameters = baseData;
-        element.endpointParameters = pathData;
-        flush(() => done());
-      });
+        test('Computes _effectivePathParameters', () => {
+          assert.typeOf(element._effectivePathParameters, 'array');
+          assert.lengthOf(element._effectivePathParameters, 2);
+        });
 
-      test('Computes _effectivePathParameters', () => {
-        assert.typeOf(element._effectivePathParameters, 'array');
-      });
+        test('Computes hasPathParameters', () => {
+          assert.isTrue(element.hasPathParameters);
+        });
 
-      test('_effectivePathParameters contains both parameters arrays', () => {
-        assert.lengthOf(element._effectivePathParameters, 3);
-      });
+        test('Renders uri parameters table', () => {
+          const section = element.shadowRoot.querySelector('.uri-parameters');
+          assert.ok(section);
+        });
 
-      test('Computes hasPathParameters', () => {
-        assert.isTrue(element.hasPathParameters);
-      });
+        test('Parameters are set on table', () => {
+          const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
+          assert.isTrue(doc.type === element._effectivePathParameters);
+        });
 
-      test('Renders uri parameters table', () => {
-        const section = element.shadowRoot.querySelector('.uri-parameters');
-        assert.ok(section);
-      });
-
-      test('Query table is not', () => {
-        const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
-        assert.isTrue(doc.type === element._effectivePathParameters);
+        test('Toggle button open the URI section', () => {
+          const button = element.shadowRoot.querySelector('.uri-parameters .section-title-area');
+          button.click();
+          assert.isTrue(element.pathOpened);
+        });
       });
     });
+  });
 
-    suite('Base path + endpoint path parameters', () => {
-      let amf;
-      let baseData;
-      let pathData;
-      let queryData;
-      suiteSetup(() => {
-        return AmfLoader.load(2, 0)
-        .then((data) => {
-          amf = data[0];
-          baseData = data[1];
-          pathData = data[2];
-          queryData = data[3];
+  suite('Base path + endpoint path parameters', () => {
+    [
+      ['Full model', false],
+      ['Compact model', true]
+    ].forEach((item) => {
+      suite(item[0], () => {
+        let element;
+        setup((done) => {
+          AmfLoader.load(item[1])
+          .then((amf) => {
+            element = fixture('Basic');
+            element.amfModel = amf;
+            element.baseUriParameters = computeServerVariables(amf, item[1]);
+            element.endpointParameters = computePathParameters(amf, item[1], 0, 0);
+            flush(() => done());
+          });
         });
-      });
 
-      setup((done) => {
-        element = fixture('Basic');
-        element.amfModel = amf;
-        element.baseUriParameters = baseData;
-        element.endpointParameters = pathData;
-        element.queryParameters = queryData;
-        flush(() => done());
-      });
+        test('Computes _effectivePathParameters', () => {
+          assert.typeOf(element._effectivePathParameters, 'array');
+        });
 
-      test('Computes hasQueryParameters', () => {
-        assert.isTrue(element.hasQueryParameters);
-      });
+        test('_effectivePathParameters contains both parameters arrays', () => {
+          assert.lengthOf(element._effectivePathParameters, 3);
+        });
 
-      test('Renders query parameters table', () => {
-        const section = element.shadowRoot.querySelector('.query-parameters');
-        assert.ok(section);
-      });
+        test('Computes hasPathParameters', () => {
+          assert.isTrue(element.hasPathParameters);
+        });
 
-      test('Parameters are set on table', () => {
-        const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
-        assert.isTrue(doc.type === element.queryParameters);
-      });
+        test('Renders uri parameters table', () => {
+          const section = element.shadowRoot.querySelector('.uri-parameters');
+          assert.ok(section);
+        });
 
-      test('Toggle button open the Query section', () => {
-        const button = element.shadowRoot.querySelector('.query-parameters .section-title-area');
-        button.click();
-        assert.isTrue(element.queryOpened);
+        test('Query table is not', () => {
+          const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
+          assert.isTrue(doc.type === element._effectivePathParameters);
+        });
       });
     });
+  });
 
-    suite('Narrow layout', () => {
-      let amf;
-      let baseData;
-      let pathData;
-      let queryData;
-      suiteSetup(() => {
-        return AmfLoader.load(2, 0)
-        .then((data) => {
-          amf = data[0];
-          baseData = data[1];
-          pathData = data[2];
-          queryData = data[3];
+  suite('Base path + endpoint path parameters', () => {
+    [
+      ['Full model', false],
+      ['Compact model', true]
+    ].forEach((item) => {
+      suite(item[0], () => {
+        let element;
+        setup((done) => {
+          AmfLoader.load(item[1])
+          .then((amf) => {
+            element = fixture('Basic');
+            element.amfModel = amf;
+            element.baseUriParameters = computeServerVariables(amf, item[1]);
+            element.endpointParameters = computePathParameters(amf, item[1], 2, 0);
+            element.queryParameters = computeQueryParameters(amf, item[1], 2, 0);
+            flush(() => done());
+          });
+        });
+
+        test('Computes hasQueryParameters', () => {
+          assert.isTrue(element.hasQueryParameters);
+        });
+
+        test('Renders query parameters table', () => {
+          const section = element.shadowRoot.querySelector('.query-parameters');
+          assert.ok(section);
+        });
+
+        test('Parameters are set on table', () => {
+          const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+          assert.isTrue(doc.type === element.queryParameters);
+        });
+
+        test('Toggle button open the Query section', () => {
+          const button = element.shadowRoot.querySelector('.query-parameters .section-title-area');
+          button.click();
+          assert.isTrue(element.queryOpened);
         });
       });
+    });
+  });
 
-      setup((done) => {
-        element = fixture('Narrow');
-        element.amfModel = amf;
-        element.baseUriParameters = baseData;
-        element.endpointParameters = pathData;
-        element.queryParameters = queryData;
-        flush(() => done());
-      });
+  suite('Narrow layout', () => {
+    [
+      ['Full model', false],
+      ['Compact model', true]
+    ].forEach((item) => {
+      suite(item[0], () => {
+        let element;
+        setup((done) => {
+          AmfLoader.load(item[1])
+          .then((amf) => {
+            element = fixture('Narrow');
+            element.amfModel = amf;
+            element.baseUriParameters = computeServerVariables(amf, item[1]);
+            element.endpointParameters = computePathParameters(amf, item[1], 2, 0);
+            element.queryParameters = computeQueryParameters(amf, item[1], 2, 0);
+            flush(() => done());
+          });
+        });
 
-      test('Has narrow attribute', () => {
-        assert.isTrue(element.hasAttribute('narrow'));
-      });
+        test('Has narrow attribute', () => {
+          assert.isTrue(element.hasAttribute('narrow'));
+        });
 
-      test('Narrow style is applied to the URI title', () => {
-        const title = element.shadowRoot.querySelector('.uri-parameters .table-title');
-        const fontWeight = getComputedStyle(title).fontWeight;
-        const fontSize = getComputedStyle(title).fontSize;
-        assert.equal(fontWeight, '200');
-        assert.equal(fontSize, '16px');
-      });
+        test('Narrow style is applied to the URI title', () => {
+          const title = element.shadowRoot.querySelector('.uri-parameters .table-title');
+          const fontWeight = getComputedStyle(title).fontWeight;
+          const fontSize = getComputedStyle(title).fontSize;
+          assert.equal(fontWeight, '200');
+          assert.equal(fontSize, '16px');
+        });
 
-      test('Narrow style is applied to the Query title', () => {
-        const title = element.shadowRoot.querySelector('.query-parameters .table-title');
-        const fontWeight = getComputedStyle(title).fontWeight;
-        const fontSize = getComputedStyle(title).fontSize;
-        assert.equal(fontWeight, '200');
-        assert.equal(fontSize, '16px');
+        test('Narrow style is applied to the Query title', () => {
+          const title = element.shadowRoot.querySelector('.query-parameters .table-title');
+          const fontWeight = getComputedStyle(title).fontWeight;
+          const fontSize = getComputedStyle(title).fontSize;
+          assert.equal(fontWeight, '200');
+          assert.equal(fontSize, '16px');
+        });
       });
     });
   });
