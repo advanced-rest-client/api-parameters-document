@@ -1,13 +1,13 @@
-import {PolymerElement} from '@polymer/polymer/polymer-element.js';
-import '@polymer/polymer/lib/elements/dom-if.js';
-import '@api-components/raml-aware/raml-aware.js';
-import '@polymer/iron-flex-layout/iron-flex-layout.js';
-import '@api-components/api-type-document/api-type-document.js';
-import '@polymer/iron-collapse/iron-collapse.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@advanced-rest-client/arc-icons/arc-icons.js';
-import '@polymer/paper-button/paper-button.js';
-import {html} from '@polymer/polymer/lib/utils/html-tag.js';
+import {PolymerElement} from '../../@polymer/polymer/polymer-element.js';
+import '../../@polymer/polymer/lib/elements/dom-if.js';
+import '../../@api-components/raml-aware/raml-aware.js';
+import '../../@polymer/iron-flex-layout/iron-flex-layout.js';
+import '../../@api-components/api-type-document/api-type-document.js';
+import '../../@polymer/iron-collapse/iron-collapse.js';
+import '../../@polymer/iron-icon/iron-icon.js';
+import '../../@advanced-rest-client/arc-icons/arc-icons.js';
+import '../../@polymer/paper-button/paper-button.js';
+import {html} from '../../@polymer/polymer/lib/utils/html-tag.js';
 /**
  * `api-parameters-document`
  *
