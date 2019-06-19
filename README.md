@@ -1,16 +1,22 @@
 [![Published on NPM](https://img.shields.io/npm/v/@api-components/api-parameters-document.svg)](https://www.npmjs.com/package/@api-components/api-parameters-document)
 
-[![Build Status](https://travis-ci.org/api-components/api-parameters-document.svg?branch=stage)](https://travis-ci.org/api-components/api-parameters-document)
+[![Build Status](https://travis-ci.org/advanced-rest-client/api-parameters-document.svg?branch=stage)](https://travis-ci.org/advanced-rest-client/api-parameters-document)
 
-[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/api-components/api-parameters-document)
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/advanced-rest-client/api-parameters-document)
 
-## &lt;api-parameters-document&gt;
+## api-parameters-document
 
 Documentation component for API query and URI parameters based on AMF data model.
 
-```html
-<api-parameters-document></api-parameters-document>
-```
+## Styling
+
+`<api-parameters-document>` provides the following custom properties and mixins for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`--api-parameters-document-title-border-color` | Border color of the title area | `#e5e5e5`
+`--api-parameters-document-toggle-view-color` | Color of the toggle button | `--arc-toggle-view-icon-color` or `rgba(0, 0, 0, 0.74)`
+`--api-parameters-document-toggle-view-hover-color` | Color of the toggle button when hovering. Please, mind that hover is not available on all devices.| `--arc-toggle-view-icon-hover-color` or `rgba(0, 0, 0, 0.88)`
 
 ### API components
 
@@ -38,39 +44,36 @@ npm install --save @api-components/api-parameters-document
 </html>
 ```
 
-### In a Polymer 3 element
-
 ```js
-import {PolymerElement, html} from '@polymer/polymer';
+import { LitElement, html } from 'lit-element';
 import '@api-components/api-parameters-document/api-parameters-document.js';
 
 class SampleElement extends PolymerElement {
-  static get template() {
+  render() {
     return html`
-    <api-parameters-document></api-parameters-document>
+    <api-parameters-document .amf="${this.amf}"></api-parameters-document>
     `;
   }
 }
 customElements.define('sample-element', SampleElement);
 ```
 
-### Installation
+### Development
 
 ```sh
 git clone https://github.com/api-components/api-parameters-document
-cd api-url-editor
+cd api-parameters-document
 npm install
-npm install -g polymer-cli
 ```
 
 ### Running the demo locally
 
 ```sh
-polymer serve --npm
-open http://127.0.0.1:<port>/demo/
+npm start
 ```
 
 ### Running the tests
+
 ```sh
-polymer test --npm
+npm test
 ```
