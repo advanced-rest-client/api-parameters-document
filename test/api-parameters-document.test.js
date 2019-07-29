@@ -1,4 +1,4 @@
-import { fixture, assert, nextFrame, aTimeout } from '@open-wc/testing';
+import { fixture, assert, aTimeout } from '@open-wc/testing';
 import { AmfLoader } from './amf-loader.js';
 import '../api-parameters-document.js';
 
@@ -9,6 +9,13 @@ describe('<api-parameters-document>', function() {
 
   async function narrowFixture() {
     return (await fixture(`<api-parameters-document narrow></api-parameters-document>`));
+  }
+
+  async function awareFixture() {
+    return (await fixture(`<div>
+      <api-parameters-document aware="test-model"></api-parameters-document>
+      <raml-aware scope="test-model"></raml-aware>
+      </div>`));
   }
 
   function getEncodes(model, compact) {
@@ -96,6 +103,34 @@ describe('<api-parameters-document>', function() {
     }
     return params;
   }
+
+  describe('Raml aware', () => {
+    let element;
+    let amf;
+    before(async () => {
+      amf = await AmfLoader.load(false);
+    });
+
+    beforeEach(async () => {
+      const region = await awareFixture();
+      element = region.querySelector('api-parameters-document');
+      region.querySelector('raml-aware').api = amf;
+      await aTimeout();
+      element.baseUriParameters = computeServerVariables(amf, false);
+      element.endpointParameters = computePathParameters(amf, false, 0, 0);
+      element.queryParameters = computeQueryParameters(amf, false, 2, 0);
+    });
+
+    it('renders raml-aware', () => {
+      const node = element.shadowRoot.querySelector('raml-aware');
+      assert.ok(node);
+    });
+
+    it('sets amf value from aware', async () => {
+      await aTimeout();
+      assert.typeOf(element.amf, 'array');
+    });
+  });
 
   [
     ['Full AMF model', false],
