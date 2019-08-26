@@ -49,7 +49,7 @@ class ApiParametersDocument extends LitElement {
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
     }
 
-    .section-title-area h3 {
+    .section-title-area .table-title {
       flex: 1;
       flex-basis: 0.000000001px;
     }
@@ -69,10 +69,9 @@ class ApiParametersDocument extends LitElement {
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      font-size: var(--arc-font-title-font-size);
-      font-weight: var(--arc-font-title-font-weight);
-      line-height: var(--arc-font-title-line-height);
-      letter-spacing: var(--arc-font-title-letter-spacing);
+      font-size: var(--arc-font-subhead-font-size);
+      font-weight: var(--arc-font-subhead-font-weight);
+      line-height: var(--arc-font-subhead-line-height);
     }
 
     :host([narrow]) .table-title {
@@ -81,7 +80,7 @@ class ApiParametersDocument extends LitElement {
   }
 
   render() {
-    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow, legacy } = this;
+    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow, legacy, headerLevel } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
     const hasQueryParameters = !!(queryParameters && queryParameters.length);
     return html`
@@ -92,7 +91,7 @@ class ApiParametersDocument extends LitElement {
         data-source="api-parameters-document"></raml-aware>` : undefined}
     ${hasPathParameters ? html`<section class="uri-parameters">
       <div class="section-title-area" @click="${this.toggleUri}" title="Toogle URI parameters details">
-        <h3 class="table-title">URI parameters</h3>
+        <div class="table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?legacy="${legacy}">
             ${this._computeToggleActionLabel(pathOpened)}
@@ -107,7 +106,7 @@ class ApiParametersDocument extends LitElement {
 
     ${hasQueryParameters ? html`<section class="query-parameters">
       <div class="section-title-area" @click="${this.toggleQuery}" title="Toogle query parameters details">
-        <h3 class="table-title">Query parameters</h3>
+        <div class="table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?legacy="${legacy}">
             ${this._computeToggleActionLabel(queryOpened)}
@@ -177,6 +176,13 @@ class ApiParametersDocument extends LitElement {
        * Enables Anypoint legacy styling
        */
       legacy: { type: Boolean },
+      /**
+       * Type of the header in the documentation section.
+       * Should be in range of 1 to 6.
+       *
+       * @default 2
+       */
+      headerLevel: { type: Number },
 
       _effectivePathParameters: { type: Array }
     };
@@ -200,6 +206,11 @@ class ApiParametersDocument extends LitElement {
     if (this._sop('endpointParameters', value)) {
       this._effectivePathParameters = this._computeEffectivePath(this.baseUriParameters, value);
     }
+  }
+
+  constructor() {
+    super();
+    this.headerLevel = 2;
   }
 
   _sop(prop, value) {

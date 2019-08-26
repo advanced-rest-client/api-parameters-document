@@ -132,6 +132,39 @@ describe('<api-parameters-document>', function() {
     });
   });
 
+  describe('Headers level', () => {
+    let element;
+    let amf;
+    before(async () => {
+      amf = await AmfLoader.load(false);
+    });
+
+    beforeEach(async () => {
+      element = await openedFixture();
+      element.amf = amf;
+      element.baseUriParameters = computeServerVariables(amf, false);
+      element.endpointParameters = computePathParameters(amf, false, 0, 0);
+      element.queryParameters = computeQueryParameters(amf, false, 2, 0);
+      await aTimeout();
+    });
+
+    it('sets default header level', () => {
+      const urititle = element.shadowRoot.querySelector('.uri-parameters [role="heading"]');
+      assert.equal(urititle.getAttribute('aria-level'), '2');
+      const querytitle = element.shadowRoot.querySelector('.query-parameters [role="heading"]');
+      assert.equal(querytitle.getAttribute('aria-level'), '2');
+    });
+
+    it('sets header level', async () => {
+      element.headerLevel = 4;
+      await aTimeout();
+      const urititle = element.shadowRoot.querySelector('.uri-parameters [role="heading"]');
+      assert.equal(urititle.getAttribute('aria-level'), '4');
+      const querytitle = element.shadowRoot.querySelector('.query-parameters [role="heading"]');
+      assert.equal(querytitle.getAttribute('aria-level'), '4');
+    });
+  });
+
   [
     ['Full AMF model', false],
     ['Compact AMF model', true]
