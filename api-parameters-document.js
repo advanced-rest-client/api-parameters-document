@@ -4,7 +4,7 @@ import '@api-components/api-type-document/api-type-document.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/iron-icon/iron-icon.js';
 import '@advanced-rest-client/arc-icons/arc-icons.js';
-import '@polymer/paper-button/paper-button.js';
+import '@anypoint-web-components/anypoint-button/anypoint-button.js';
 /**
  * `api-parameters-document`
  *
@@ -92,7 +92,7 @@ class ApiParametersDocument extends LitElement {
   }
 
   render() {
-    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow } = this;
+    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow, legacy } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
     const hasQueryParameters = !!(queryParameters && queryParameters.length);
     return html`
@@ -105,10 +105,10 @@ class ApiParametersDocument extends LitElement {
       <div class="section-title-area" @click="${this.toggleUri}" title="Toogle URI parameters details">
         <h3 class="table-title">URI parameters</h3>
         <div class="title-area-actions">
-          <paper-button class="toggle-button">
+          <anypoint-button class="toggle-button" ?legacy="${legacy}">
             ${this._computeToggleActionLabel(pathOpened)}
             <iron-icon icon="arc:expand-more" class="${this._computeToggleIconClass(pathOpened)}"></iron-icon>
-          </paper-button>
+          </anypoint-button>
         </div>
       </div>
       <iron-collapse .opened="${pathOpened}">
@@ -120,10 +120,10 @@ class ApiParametersDocument extends LitElement {
       <div class="section-title-area" @click="${this.toggleQuery}" title="Toogle query parameters details">
         <h3 class="table-title">Query parameters</h3>
         <div class="title-area-actions">
-          <paper-button class="toggle-button">
+          <anypoint-button class="toggle-button" ?legacy="${legacy}">
             ${this._computeToggleActionLabel(queryOpened)}
             <iron-icon icon="arc:expand-more" class="${this._computeToggleIconClass(queryOpened)}"></iron-icon>
-          </paper-button>
+          </anypoint-button>
         </div>
       </div>
       <iron-collapse .opened="${queryOpened}">
@@ -180,15 +180,16 @@ class ApiParametersDocument extends LitElement {
        * @type {Array<Object>}
        */
       queryParameters: { type: Array },
-
-      _effectivePathParameters: { type: Array },
       /**
        * Set to render a mobile friendly view.
        */
-       narrow: {
-         type: Boolean,
-         reflect: true
-       }
+      narrow: { type: Boolean, reflect: true },
+      /**
+       * Enables Anypoint legacy styling
+       */
+      legacy: { type: Boolean },
+
+      _effectivePathParameters: { type: Array }
     };
   }
 
