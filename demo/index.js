@@ -5,7 +5,7 @@ import '@api-components/raml-aware/raml-aware.js';
 import '@api-components/api-navigation/api-navigation.js';
 import '../api-parameters-document.js';
 
-import { AmfHelperMixin, ns } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
+import { AmfHelperMixin } from '@api-components/amf-helper-mixin/amf-helper-mixin.js';
 class DemoElement extends AmfHelperMixin(LitElement) {}
 
 window.customElements.define('demo-element', DemoElement);
@@ -87,7 +87,7 @@ class ApiDemo extends ApiDemoPageBase {
       this.queryParameters = undefined;
       return;
     }
-    const key = helper._getAmfKey(ns.raml.vocabularies.http + 'parameter');
+    const key = helper._getAmfKey(helper.ns.raml.vocabularies.http + 'parameter');
     this.queryParameters = helper._ensureArray(expect[key]);
     this.hasData = true;
   }
