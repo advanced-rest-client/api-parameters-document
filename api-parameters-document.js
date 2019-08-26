@@ -54,17 +54,6 @@ class ApiParametersDocument extends LitElement {
       flex-basis: 0.000000001px;
     }
 
-    .toggle-button {
-      outline: none;
-      color: var(--api-parameters-document-toggle-view-color, var(--arc-toggle-view-icon-color, rgba(0, 0, 0, 0.74)));
-      transition: color 0.25s ease-in-out;
-    }
-
-    .toggle-button:hover {
-      color: var(--api-parameters-document-toggle-view-hover-color,
-        var(--arc-toggle-view-icon-hover-color, rgba(0, 0, 0, 0.88)));
-    }
-
     .toggle-icon {
       outline: none;
       margin-left: 8px;
