@@ -100,7 +100,7 @@ class ApiParametersDocument extends LitElement {
         </div>
       </div>
       <iron-collapse .opened="${pathOpened}">
-        <api-type-document .amf="${amf}" .type="${_effectivePathParameters}" ?narrow="${narrow}"></api-type-document>
+        <api-type-document .amf="${amf}" .type="${_effectivePathParameters}" ?legacy="${legacy}" ?narrow="${narrow}"></api-type-document>
       </iron-collapse>
     </section>` : undefined}
 
@@ -115,7 +115,7 @@ class ApiParametersDocument extends LitElement {
         </div>
       </div>
       <iron-collapse .opened="${queryOpened}">
-        <api-type-document .amf="${amf}" .type="${queryParameters}" ?narrow="${narrow}"></api-type-document>
+        <api-type-document .amf="${amf}" .type="${queryParameters}" ?legacy="${legacy}" ?narrow="${narrow}"></api-type-document>
       </iron-collapse>
     </section>`: undefined}`;
   }
