@@ -80,7 +80,18 @@ class ApiParametersDocument extends LitElement {
   }
 
   render() {
-    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow, compatibility, headerLevel } = this;
+    const {
+      aware,
+      pathOpened,
+      queryOpened,
+      _effectivePathParameters,
+      queryParameters,
+      amf,
+      narrow,
+      compatibility,
+      headerLevel,
+      graph
+    } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
     const hasQueryParameters = !!(queryParameters && queryParameters.length);
     return html`
@@ -100,7 +111,12 @@ class ApiParametersDocument extends LitElement {
         </div>
       </div>
       <iron-collapse .opened="${pathOpened}">
-        <api-type-document .amf="${amf}" .type="${_effectivePathParameters}" ?compatibility="${compatibility}" ?narrow="${narrow}"></api-type-document>
+        <api-type-document
+          .amf="${amf}"
+          .type="${_effectivePathParameters}"
+          ?compatibility="${compatibility}"
+          ?narrow="${narrow}"
+          ?graph="${graph}"></api-type-document>
       </iron-collapse>
     </section>` : undefined}
 
@@ -115,7 +131,12 @@ class ApiParametersDocument extends LitElement {
         </div>
       </div>
       <iron-collapse .opened="${queryOpened}">
-        <api-type-document .amf="${amf}" .type="${queryParameters}" ?compatibility="${compatibility}" ?narrow="${narrow}"></api-type-document>
+        <api-type-document
+          .amf="${amf}"
+          .type="${queryParameters}"
+          ?compatibility="${compatibility}"
+          ?narrow="${narrow}"
+          ?graph="${graph}"></api-type-document>
       </iron-collapse>
     </section>`: undefined}`;
   }
@@ -187,6 +208,10 @@ class ApiParametersDocument extends LitElement {
        * @default 2
        */
       headerLevel: { type: Number },
+      /**
+       * Passed to `api-type-document`. Enables internal links rendering for types.
+       */
+      graph: { type: Boolean },
 
       _effectivePathParameters: { type: Array }
     };
