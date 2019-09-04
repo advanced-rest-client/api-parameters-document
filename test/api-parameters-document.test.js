@@ -165,6 +165,21 @@ describe('<api-parameters-document>', function() {
     });
   });
 
+  describe('compatibility mode', () => {
+    it('sets compatibility on item when setting legacy', async () => {
+      const element = await openedFixture();
+      element.legacy = true;
+      assert.isTrue(element.legacy, 'legacy is set');
+      assert.isTrue(element.compatibility, 'compatibility is set');
+    });
+
+    it('returns compatibility value from item when getting legacy', async () => {
+      const element = await openedFixture();
+      element.compatibility = true;
+      assert.isTrue(element.legacy, 'legacy is set');
+    });
+  });
+
   [
     ['Full AMF model', false],
     ['Compact AMF model', true]

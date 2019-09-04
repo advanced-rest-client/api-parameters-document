@@ -80,7 +80,7 @@ class ApiParametersDocument extends LitElement {
   }
 
   render() {
-    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow, legacy, headerLevel } = this;
+    const { aware, pathOpened, queryOpened, _effectivePathParameters, queryParameters, amf, narrow, compatibility, headerLevel } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
     const hasQueryParameters = !!(queryParameters && queryParameters.length);
     return html`
@@ -93,14 +93,14 @@ class ApiParametersDocument extends LitElement {
       <div class="section-title-area" @click="${this.toggleUri}" title="Toogle URI parameters details">
         <div class="table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
-          <anypoint-button class="toggle-button" ?legacy="${legacy}">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(pathOpened)}
             <iron-icon icon="arc:expand-more" class="${this._computeToggleIconClass(pathOpened)}"></iron-icon>
           </anypoint-button>
         </div>
       </div>
       <iron-collapse .opened="${pathOpened}">
-        <api-type-document .amf="${amf}" .type="${_effectivePathParameters}" ?legacy="${legacy}" ?narrow="${narrow}"></api-type-document>
+        <api-type-document .amf="${amf}" .type="${_effectivePathParameters}" ?compatibility="${compatibility}" ?narrow="${narrow}"></api-type-document>
       </iron-collapse>
     </section>` : undefined}
 
@@ -108,14 +108,14 @@ class ApiParametersDocument extends LitElement {
       <div class="section-title-area" @click="${this.toggleQuery}" title="Toogle query parameters details">
         <div class="table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
-          <anypoint-button class="toggle-button" ?legacy="${legacy}">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(queryOpened)}
             <iron-icon icon="arc:expand-more" class="${this._computeToggleIconClass(queryOpened)}"></iron-icon>
           </anypoint-button>
         </div>
       </div>
       <iron-collapse .opened="${queryOpened}">
-        <api-type-document .amf="${amf}" .type="${queryParameters}" ?legacy="${legacy}" ?narrow="${narrow}"></api-type-document>
+        <api-type-document .amf="${amf}" .type="${queryParameters}" ?compatibility="${compatibility}" ?narrow="${narrow}"></api-type-document>
       </iron-collapse>
     </section>`: undefined}`;
   }
@@ -173,9 +173,13 @@ class ApiParametersDocument extends LitElement {
        */
       narrow: { type: Boolean, reflect: true },
       /**
-       * Enables Anypoint legacy styling
+       * @deprecated Use `compatibility` instead
        */
       legacy: { type: Boolean },
+      /**
+       * Enables compatibility with Anypoint components.
+       */
+      compatibility: { type: Boolean },
       /**
        * Type of the header in the documentation section.
        * Should be in range of 1 to 6.
@@ -186,6 +190,14 @@ class ApiParametersDocument extends LitElement {
 
       _effectivePathParameters: { type: Array }
     };
+  }
+
+  get legacy() {
+    return this.compatibility;
+  }
+
+  set legacy(value) {
+    this.compatibility = value;
   }
 
   get baseUriParameters() {
