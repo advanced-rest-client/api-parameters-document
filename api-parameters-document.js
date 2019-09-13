@@ -1,9 +1,8 @@
 import { LitElement, html, css } from 'lit-element';
+import { expandMore } from '@advanced-rest-client/arc-icons/ArcIcons.js';
 import '@api-components/raml-aware/raml-aware.js';
 import '@api-components/api-type-document/api-type-document.js';
 import '@polymer/iron-collapse/iron-collapse.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@advanced-rest-client/arc-icons/arc-icons.js';
 import '@anypoint-web-components/anypoint-button/anypoint-button.js';
 /**
  * `api-parameters-document`
@@ -76,6 +75,13 @@ class ApiParametersDocument extends LitElement {
 
     :host([narrow]) .table-title {
       font-size: var(--api-parameters-document-title-narrow-font-size, initial);
+    }
+
+    .icon {
+      display: block;
+      width: 24px;
+      height: 24px;
+      fill: currentColor;
     }`;
   }
 
@@ -106,7 +112,7 @@ class ApiParametersDocument extends LitElement {
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(pathOpened)}
-            <iron-icon icon="arc:expand-more" class="${this._computeToggleIconClass(pathOpened)}"></iron-icon>
+            <span class="icon ${this._computeToggleIconClass(pathOpened)}">${expandMore}</span>
           </anypoint-button>
         </div>
       </div>
@@ -126,7 +132,7 @@ class ApiParametersDocument extends LitElement {
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(queryOpened)}
-            <iron-icon icon="arc:expand-more" class="${this._computeToggleIconClass(queryOpened)}"></iron-icon>
+            <span class="icon ${this._computeToggleIconClass(queryOpened)}">${expandMore}</span>
           </anypoint-button>
         </div>
       </div>
