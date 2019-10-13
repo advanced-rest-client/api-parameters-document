@@ -8,23 +8,15 @@
 
 Documentation component for API query and URI parameters based on AMF data model.
 
-## Styling
+## Version compatibility
 
-`<api-parameters-document>` provides the following custom properties and mixins for styling:
-
-Custom property | Description | Default
-----------------|-------------|----------
-`--api-parameters-document-title-border-color` | Border color of the title area | `#e5e5e5`
-`--api-parameters-document-toggle-view-color` | Color of the toggle button | `--arc-toggle-view-icon-color` or `rgba(0, 0, 0, 0.74)`
-`--api-parameters-document-toggle-view-hover-color` | Color of the toggle button when hovering. Please, mind that hover is not available on all devices.| `--arc-toggle-view-icon-hover-color` or `rgba(0, 0, 0, 0.88)`
-
-### API components
-
-This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)
+This version only works with AMF model version 2 (AMF parser >= 4.0.0).
+For compatibility with previous model version use `3.x.x` version of the component.
 
 ## Usage
 
 ### Installation
+
 ```
 npm install --save @api-components/api-parameters-document
 ```
@@ -58,7 +50,7 @@ class SampleElement extends PolymerElement {
 customElements.define('sample-element', SampleElement);
 ```
 
-### Development
+## Development
 
 ```sh
 git clone https://github.com/api-components/api-parameters-document
@@ -77,3 +69,7 @@ npm start
 ```sh
 npm test
 ```
+
+## API components
+
+This components is a part of [API components ecosystem](https://elements.advancedrestclient.com/)

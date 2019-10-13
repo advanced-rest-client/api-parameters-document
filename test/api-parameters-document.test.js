@@ -18,92 +18,6 @@ describe('<api-parameters-document>', function() {
       </div>`));
   }
 
-  function getEncodes(model, compact) {
-    if (model instanceof Array) {
-      model = model[0];
-    }
-    const encKey = compact ? 'doc:encodes' : 'http://a.ml/vocabularies/document#encodes';
-    let def = model[encKey];
-    if (def instanceof Array) {
-      def = def[0];
-    }
-    return def;
-  }
-
-  function getServer(enc, compact) {
-    const key = compact ? 'raml-http:server' : 'http://a.ml/vocabularies/http#server';
-    let def = enc[key];
-    if (def instanceof Array) {
-      def = def[0];
-    }
-    return def;
-  }
-
-  function getSrvBaseVariables(srv, compact) {
-    const key = compact ? 'raml-http:variable' : 'http://a.ml/vocabularies/http#variable';
-    let def = srv[key];
-    if (!(def instanceof Array)) {
-      def = [def];
-    }
-    return def;
-  }
-
-  function getMethod(model, compact, endpointIndex, methodIndex) {
-    const enc = getEncodes(model, compact);
-    const key = compact ? 'raml-http:endpoint' : 'http://a.ml/vocabularies/http#endpoint';
-    let endpoints = enc[key];
-    if (!(endpoints instanceof Array)) {
-      endpoints = [endpoints];
-    }
-    const endpoint = endpoints[endpointIndex];
-    const mkey = compact ? 'hydra:supportedOperation' : 'http://www.w3.org/ns/hydra/core#supportedOperation';
-    let methods = endpoint[mkey];
-    if (!(methods instanceof Array)) {
-      methods = [methods];
-    }
-    let method = methods[methodIndex];
-    if (method instanceof Array) {
-      method = method[0];
-    }
-    return method;
-  }
-
-  function getExpects(method, compact) {
-    const key = compact ? 'hydra:expects' : 'http://www.w3.org/ns/hydra/core#expects';
-    let result = method[key];
-    if (result instanceof Array) {
-      result = result[0];
-    }
-    return result;
-  }
-
-  function computeServerVariables(model, compact) {
-    const enc = getEncodes(model, compact);
-    const srv = getServer(enc, compact);
-    return getSrvBaseVariables(srv, compact);
-  }
-
-  function computePathParameters(model, compact, endpointIndex, methodIndex) {
-    const method = getMethod(model, compact, endpointIndex, methodIndex);
-    const key = compact ? 'raml-http:parameter' : 'http://a.ml/vocabularies/http#endpoint';
-    let params = method[key];
-    if (!(params instanceof Array)) {
-      params = [params];
-    }
-    return params;
-  }
-
-  function computeQueryParameters(model, compact, endpointIndex, methodIndex) {
-    const method = getMethod(model, compact, endpointIndex, methodIndex);
-    const expect = getExpects(method, compact);
-    const key = compact ? 'raml-http:parameter' : 'http://a.ml/vocabularies/http#parameter';
-    let params = expect[key];
-    if (!(params instanceof Array)) {
-      params = [params];
-    }
-    return params;
-  }
-
   describe('Raml aware', () => {
     let element;
     let amf;
@@ -116,9 +30,9 @@ describe('<api-parameters-document>', function() {
       element = region.querySelector('api-parameters-document');
       region.querySelector('raml-aware').api = amf;
       await aTimeout();
-      element.baseUriParameters = computeServerVariables(amf, false);
-      element.endpointParameters = computePathParameters(amf, false, 0, 0);
-      element.queryParameters = computeQueryParameters(amf, false, 2, 0);
+      element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
+      element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
+      element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
     });
 
     it('renders raml-aware', () => {
@@ -142,9 +56,9 @@ describe('<api-parameters-document>', function() {
     beforeEach(async () => {
       element = await openedFixture();
       element.amf = amf;
-      element.baseUriParameters = computeServerVariables(amf, false);
-      element.endpointParameters = computePathParameters(amf, false, 0, 0);
-      element.queryParameters = computeQueryParameters(amf, false, 2, 0);
+      element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
+      element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
+      element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
       await aTimeout();
     });
 
@@ -205,7 +119,7 @@ describe('<api-parameters-document>', function() {
         beforeEach(async () => {
           element = await openedFixture();
           element.amf = amf;
-          element.baseUriParameters = computeServerVariables(amf, item[1]);
+          element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
           await aTimeout();
         });
 
@@ -239,8 +153,8 @@ describe('<api-parameters-document>', function() {
         beforeEach(async () => {
           element = await openedFixture();
           element.amf = amf;
-          element.baseUriParameters = computeServerVariables(amf, item[1]);
-          element.endpointParameters = computePathParameters(amf, item[1], 0, 0);
+          element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
+          element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
           await aTimeout();
         });
 
@@ -249,6 +163,7 @@ describe('<api-parameters-document>', function() {
         });
 
         it('_effectivePathParameters contains both parameters arrays', () => {
+          // console.log(element.endpointParameters);
           assert.lengthOf(element._effectivePathParameters, 3);
         });
 
@@ -271,9 +186,9 @@ describe('<api-parameters-document>', function() {
         beforeEach(async () => {
           element = await openedFixture();
           element.amf = amf;
-          element.baseUriParameters = computeServerVariables(amf, item[1]);
-          element.endpointParameters = computePathParameters(amf, item[1], 0, 0);
-          element.queryParameters = computeQueryParameters(amf, item[1], 2, 0);
+          element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
+          element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
+          element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
           await aTimeout();
         });
 
@@ -303,9 +218,9 @@ describe('<api-parameters-document>', function() {
         beforeEach(async () => {
           element = await narrowFixture();
           element.amf = amf;
-          element.baseUriParameters = computeServerVariables(amf, item[1]);
-          element.endpointParameters = computePathParameters(amf, item[1], 2, 0);
-          element.queryParameters = computeQueryParameters(amf, item[1], 2, 0);
+          element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
+          element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/people');
+          element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
           await aTimeout();
         });
 

@@ -12,39 +12,10 @@ window.customElements.define('demo-element', DemoElement);
 class ApiDemo extends ApiDemoPageBase {
   constructor() {
     super();
+    this.initObservableProperties([
+      'hasData', 'baseUriParameters', 'endpointParameters', 'queryParameters'
+    ]);
     this.hasData = false;
-  }
-
-  get hasData() {
-    return this._hasData;
-  }
-
-  set hasData(value) {
-    this._setObservableProperty('hasData', value);
-  }
-
-  get baseUriParameters() {
-    return this._baseUriParameters;
-  }
-
-  set baseUriParameters(value) {
-    this._setObservableProperty('baseUriParameters', value);
-  }
-
-  get endpointParameters() {
-    return this._endpointParameters;
-  }
-
-  set endpointParameters(value) {
-    this._setObservableProperty('endpointParameters', value);
-  }
-
-  get queryParameters() {
-    return this._queryParameters;
-  }
-
-  set queryParameters(value) {
-    this._setObservableProperty('queryParameters', value);
   }
 
   get amf() {
@@ -87,7 +58,7 @@ class ApiDemo extends ApiDemoPageBase {
       this.queryParameters = undefined;
       return;
     }
-    const key = helper._getAmfKey(helper.ns.raml.vocabularies.http + 'parameter');
+    const key = helper._getAmfKey(helper.ns.aml.vocabularies.apiContract.parameter);
     this.queryParameters = helper._ensureArray(expect[key]);
     this.hasData = true;
   }
