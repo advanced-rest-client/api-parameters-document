@@ -249,3 +249,17 @@
 
 
 
+# 4.0.0 (2019-10-13)
+
+
+### Bug Fixes
+
+* adding mixxing legacy property to the type document ([0e131d0](https://github.com/advanced-rest-client/api-parameters-document/commit/0e131d0))
+
+
+### Features
+
+* adding headerLevel and updating styles ([a1889d9](https://github.com/advanced-rest-client/api-parameters-document/commit/a1889d9))
+
+
+
