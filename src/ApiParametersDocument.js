@@ -46,6 +46,11 @@ export class ApiParametersDocument extends LitElement {
       -ms-user-select: none;
       user-select: none;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+      transition: border-bottom-color 0.15s ease-in-out;
+    }
+
+    .section-title-area[opened] {
+      border-bottom-color: transparent;
     }
 
     .section-title-area .table-title {
@@ -107,7 +112,12 @@ export class ApiParametersDocument extends LitElement {
         .scope="${aware}"
         data-source="api-parameters-document"></raml-aware>` : undefined}
     ${hasPathParameters ? html`<section class="uri-parameters">
-      <div class="section-title-area" @click="${this.toggleUri}" title="Toogle URI parameters details">
+      <div
+        class="section-title-area"
+        @click="${this.toggleUri}"
+        title="Toogle URI parameters details"
+        ?opened="${pathOpened}"
+      >
         <div class="table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
@@ -127,7 +137,12 @@ export class ApiParametersDocument extends LitElement {
     </section>` : undefined}
 
     ${hasQueryParameters ? html`<section class="query-parameters">
-      <div class="section-title-area" @click="${this.toggleQuery}" title="Toogle query parameters details">
+      <div
+        class="section-title-area"
+        @click="${this.toggleQuery}"
+        title="Toogle query parameters details"
+        ?opened="${queryOpened}"
+      >
         <div class="table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">

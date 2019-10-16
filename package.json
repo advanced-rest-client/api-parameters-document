@@ -1,7 +1,7 @@
 {
   "name": "@api-components/api-parameters-document",
   "description": "Documentation component for API query and URI parameters based on AMF data model",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "license": "Apache-2.0",
   "main": "api-parameters-document.js",
   "keywords": [
@@ -29,7 +29,7 @@
     "email": "arc@mulesoft.com"
   },
   "dependencies": {
-    "@advanced-rest-client/arc-icons": "^3.0.2",
+    "@advanced-rest-client/arc-icons": "^3.0.3",
     "@anypoint-web-components/anypoint-button": "^1.0.12",
     "@api-components/api-type-document": "^4.0.0",
     "@api-components/raml-aware": "^3.0.0",
