@@ -24,7 +24,7 @@ import '@anypoint-web-components/anypoint-button/anypoint-button.js';
  * @memberof ApiElements
  */
 export class ApiParametersDocument extends LitElement {
-  static get styles() {
+  get styles() {
     return css`:host {
       display: block;
       font-size: var(--arc-font-body1-font-size);
@@ -105,7 +105,7 @@ export class ApiParametersDocument extends LitElement {
     } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
     const hasQueryParameters = !!(queryParameters && queryParameters.length);
-    return html`
+    return html`<style>${this.styles}</style>
     ${aware ?
       html`<raml-aware
         @api-changed="${this._apiChangedHandler}"
