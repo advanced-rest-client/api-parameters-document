@@ -22,7 +22,7 @@
 ],
 "apiContract:server": [
 {
-"@id": "#161",
+"@id": "#162",
 "@type": [
 "apiContract:Server",
 "doc:DomainElement"
@@ -34,7 +34,7 @@
 ],
 "apiContract:variable": [
 {
-"@id": "#162",
+"@id": "#163",
 "@type": [
 "apiContract:Parameter",
 "doc:DomainElement"
@@ -66,7 +66,7 @@
 ],
 "raml-shapes:schema": [
 {
-"@id": "#163",
+"@id": "#164",
 "@type": [
 "raml-shapes:ScalarShape",
 "raml-shapes:AnyShape",
@@ -96,57 +96,6 @@
 ],
 "shacl:defaultValue": [
 {
-"@id": "#164",
-"@type": [
-"data:Scalar",
-"data:Node",
-"doc:DomainElement"
-],
-"data:value": [
-{
-"@value": "production"
-}
-],
-"shacl:datatype": [
-{
-"@id": "http://www.w3.org/2001/XMLSchema#string"
-}
-],
-"core:name": [
-{
-"@value": "scalar_1"
-}
-],
-"sourcemaps:sources": [
-{
-"@id": "#164/source-map",
-"@type": [
-"sourcemaps:SourceMap"
-],
-"sourcemaps:lexical": [
-{
-"sourcemaps:element": [
-{
-"@value": "amf://id#164"
-}
-],
-"sourcemaps:value": [
-{
-"@value": "[(30,13)-(30,23)]"
-}
-]
-}
-]
-}
-]
-}
-],
-"shacl:in": [
-{
-"@id": "#163/list",
-"@type": "rdfs:Seq",
-"rdfs:_1": [
-{
 "@id": "#165",
 "@type": [
 "data:Scalar",
@@ -155,7 +104,7 @@
 ],
 "data:value": [
 {
-"@value": "development"
+"@value": "production"
 }
 ],
 "shacl:datatype": [
@@ -183,6 +132,57 @@
 ],
 "sourcemaps:value": [
 {
+"@value": "[(30,13)-(30,23)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"shacl:in": [
+{
+"@id": "#164/list",
+"@type": "rdfs:Seq",
+"rdfs:_1": [
+{
+"@id": "#166",
+"@type": [
+"data:Scalar",
+"data:Node",
+"doc:DomainElement"
+],
+"data:value": [
+{
+"@value": "development"
+}
+],
+"shacl:datatype": [
+{
+"@id": "http://www.w3.org/2001/XMLSchema#string"
+}
+],
+"core:name": [
+{
+"@value": "scalar_1"
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#166/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#166"
+}
+],
+"sourcemaps:value": [
+{
 "@value": "[(28,11)-(28,22)]"
 }
 ]
@@ -194,7 +194,7 @@
 ],
 "rdfs:_2": [
 {
-"@id": "#166",
+"@id": "#167",
 "@type": [
 "data:Scalar",
 "data:Node",
@@ -217,7 +217,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#166/source-map",
+"@id": "#167/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -225,7 +225,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#166"
+"@value": "amf://id#167"
 }
 ],
 "sourcemaps:value": [
@@ -241,7 +241,7 @@
 ],
 "rdfs:_3": [
 {
-"@id": "#167",
+"@id": "#168",
 "@type": [
 "data:Scalar",
 "data:Node",
@@ -264,7 +264,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#167/source-map",
+"@id": "#168/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -272,7 +272,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#167"
+"@value": "amf://id#168"
 }
 ],
 "sourcemaps:value": [
@@ -288,7 +288,7 @@
 ],
 "rdfs:_4": [
 {
-"@id": "#168",
+"@id": "#169",
 "@type": [
 "data:Scalar",
 "data:Node",
@@ -311,7 +311,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#168/source-map",
+"@id": "#169/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -319,7 +319,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#168"
+"@value": "amf://id#169"
 }
 ],
 "sourcemaps:value": [
@@ -342,7 +342,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#163/source-map",
+"@id": "#164/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -350,7 +350,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#163"
+"@value": "amf://id#164"
 }
 ],
 "sourcemaps:value": [
@@ -400,7 +400,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#163"
+"@value": "amf://id#164"
 }
 ],
 "sourcemaps:value": [
@@ -452,7 +452,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#162/source-map",
+"@id": "#163/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -472,7 +472,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#162"
+"@value": "amf://id#163"
 }
 ],
 "sourcemaps:value": [
@@ -498,7 +498,7 @@
 ]
 },
 {
-"@id": "#169",
+"@id": "#170",
 "@type": [
 "apiContract:Parameter",
 "doc:DomainElement"
@@ -520,7 +520,7 @@
 ],
 "raml-shapes:schema": [
 {
-"@id": "#170",
+"@id": "#171",
 "@type": [
 "raml-shapes:ScalarShape",
 "raml-shapes:AnyShape",
@@ -542,7 +542,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#169/source-map",
+"@id": "#170/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -550,7 +550,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#169"
+"@value": "amf://id#170"
 }
 ],
 "sourcemaps:value": [
@@ -566,7 +566,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#161/source-map",
+"@id": "#162/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -600,7 +600,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#161"
+"@value": "amf://id#162"
 }
 ],
 "sourcemaps:value": [
@@ -954,7 +954,7 @@
 }
 ],
 "amf://id#63": {
-"core:name": [
+"core:extensionName": [
 {
 "@value": "deprecated"
 }
@@ -1047,7 +1047,7 @@
 }
 ],
 "amf://id#63": {
-"core:name": [
+"core:extensionName": [
 {
 "@value": "deprecated"
 }
@@ -1768,7 +1768,7 @@
 }
 ],
 "amf://id#63": {
-"core:name": [
+"core:extensionName": [
 {
 "@value": "deprecated"
 }
@@ -1886,7 +1886,7 @@
 }
 ],
 "amf://id#63": {
-"core:name": [
+"core:extensionName": [
 {
 "@value": "deprecated"
 }
@@ -2354,7 +2354,7 @@
 }
 ],
 "amf://id#63": {
-"core:name": [
+"core:extensionName": [
 {
 "@value": "deprecated"
 }
@@ -5106,7 +5106,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(81,0)-(97,0)]"
+"@value": "[(81,0)-(98,0)]"
 }
 ]
 },
@@ -5147,9 +5147,45 @@
 "@value": "The endpoint to access information about the person"
 }
 ],
-"apiContract:parameter": [
+"apiContract:supportedOperation": [
 {
 "@id": "#158",
+"@type": [
+"apiContract:Operation",
+"doc:DomainElement"
+],
+"apiContract:method": [
+{
+"@value": "get"
+}
+],
+"sourcemaps:sources": [
+{
+"@id": "#158/source-map",
+"@type": [
+"sourcemaps:SourceMap"
+],
+"sourcemaps:lexical": [
+{
+"sourcemaps:element": [
+{
+"@value": "amf://id#158"
+}
+],
+"sourcemaps:value": [
+{
+"@value": "[(97,4)-(98,0)]"
+}
+]
+}
+]
+}
+]
+}
+],
+"apiContract:parameter": [
+{
+"@id": "#159",
 "@type": [
 "apiContract:Parameter",
 "doc:DomainElement"
@@ -5181,7 +5217,7 @@
 ],
 "raml-shapes:schema": [
 {
-"@id": "#159",
+"@id": "#160",
 "@type": [
 "raml-shapes:ScalarShape",
 "raml-shapes:AnyShape",
@@ -5206,7 +5242,7 @@
 ],
 "apiContract:examples": [
 {
-"@id": "#160",
+"@id": "#161",
 "@type": [
 "apiContract:Example",
 "doc:DomainElement"
@@ -5218,7 +5254,7 @@
 ],
 "doc:structuredValue": [
 {
-"@id": "#160",
+"@id": "#161",
 "@type": [
 "data:Scalar",
 "data:Node",
@@ -5241,7 +5277,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#160/source-map",
+"@id": "#161/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -5249,7 +5285,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#160"
+"@value": "amf://id#161"
 }
 ],
 "sourcemaps:value": [
@@ -5270,7 +5306,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#160/source-map",
+"@id": "#161/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -5304,7 +5340,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#160"
+"@value": "amf://id#161"
 }
 ],
 "sourcemaps:value": [
@@ -5330,12 +5366,12 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#160"
+"@value": "amf://id#161"
 }
 ],
 "sourcemaps:value": [
 {
-"@value": "amf://id#158"
+"@value": "amf://id#159"
 }
 ]
 }
@@ -5346,7 +5382,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#159/source-map",
+"@id": "#160/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -5354,7 +5390,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#159"
+"@value": "amf://id#160"
 }
 ],
 "sourcemaps:value": [
@@ -5380,7 +5416,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#159"
+"@value": "amf://id#160"
 }
 ],
 "sourcemaps:value": [
@@ -5408,7 +5444,7 @@
 ],
 "sourcemaps:sources": [
 {
-"@id": "#158/source-map",
+"@id": "#159/source-map",
 "@type": [
 "sourcemaps:SourceMap"
 ],
@@ -5440,7 +5476,7 @@
 {
 "sourcemaps:element": [
 {
-"@value": "amf://id#158"
+"@value": "amf://id#159"
 }
 ],
 "sourcemaps:value": [
@@ -5519,7 +5555,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(88,2)-(97,0)]"
+"@value": "[(88,2)-(98,0)]"
 }
 ]
 },
@@ -5605,7 +5641,7 @@
 ],
 "sourcemaps:value": [
 {
-"@value": "[(2,0)-(97,0)]"
+"@value": "[(2,0)-(98,0)]"
 }
 ]
 },
