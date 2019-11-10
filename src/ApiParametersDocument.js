@@ -132,7 +132,9 @@ export class ApiParametersDocument extends LitElement {
           .type="${_effectivePathParameters}"
           ?compatibility="${compatibility}"
           ?narrow="${narrow}"
-          ?graph="${graph}"></api-type-document>
+          ?graph="${graph}"
+          noExamplesActions
+        ></api-type-document>
       </iron-collapse>
     </section>` : undefined}
 
@@ -157,7 +159,9 @@ export class ApiParametersDocument extends LitElement {
           .type="${queryParameters}"
           ?compatibility="${compatibility}"
           ?narrow="${narrow}"
-          ?graph="${graph}"></api-type-document>
+          ?graph="${graph}"
+          noExamplesActions
+        ></api-type-document>
       </iron-collapse>
     </section>`: undefined}`;
   }
