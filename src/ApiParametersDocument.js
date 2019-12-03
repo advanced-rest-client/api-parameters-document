@@ -110,7 +110,7 @@ export class ApiParametersDocument extends LitElement {
       html`<raml-aware
         @api-changed="${this._apiChangedHandler}"
         .scope="${aware}"
-        data-source="api-parameters-document"></raml-aware>` : undefined}
+        data-source="api-parameters-document"></raml-aware>` : ''}
     ${hasPathParameters ? html`<section class="uri-parameters">
       <div
         class="section-title-area"
@@ -136,7 +136,7 @@ export class ApiParametersDocument extends LitElement {
           noExamplesActions
         ></api-type-document>
       </iron-collapse>
-    </section>` : undefined}
+    </section>` : ''}
 
     ${hasQueryParameters ? html`<section class="query-parameters">
       <div
@@ -163,7 +163,7 @@ export class ApiParametersDocument extends LitElement {
           noExamplesActions
         ></api-type-document>
       </iron-collapse>
-    </section>`: undefined}`;
+    </section>`: ''}`;
   }
 
   static get properties() {
