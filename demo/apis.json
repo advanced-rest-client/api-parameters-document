@@ -1,3 +1,4 @@
 {
-  "demo-api/demo-api.raml": "RAML 1.0"
+  "demo-api/demo-api.raml": "RAML 1.0",
+  "SE-12752/SE-12752.raml": "RAML 1.0"
 }

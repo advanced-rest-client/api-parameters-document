@@ -104,7 +104,6 @@ export class ApiParametersDocument extends LitElement {
       graph
     } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
-    const hasQueryParameters = !!(queryParameters && queryParameters.length);
     return html`<style>${this.styles}</style>
     ${aware ?
       html`<raml-aware
@@ -138,7 +137,7 @@ export class ApiParametersDocument extends LitElement {
       </iron-collapse>
     </section>` : ''}
 
-    ${hasQueryParameters ? html`<section class="query-parameters">
+    ${queryParameters ? html`<section class="query-parameters">
       <div
         class="section-title-area"
         @click="${this.toggleQuery}"

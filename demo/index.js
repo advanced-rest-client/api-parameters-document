@@ -47,6 +47,39 @@ class ApiDemo extends ApiDemoPageBase {
     }
   }
 
+  _readParamsProperties(scheme) {
+    if (!scheme) {
+      return;
+    }
+    const helper = this.helper;
+    const pKey = helper._getAmfKey(helper.ns.aml.vocabularies.apiContract.parameter);
+    let result = helper._ensureArray(scheme[pKey]);
+    if (result) {
+      return result;
+    }
+    const qKey = helper._getAmfKey(helper.ns.aml.vocabularies.apiContract.queryString);
+    result = helper._ensureArray(scheme[qKey]);
+    if (result) {
+      result = helper._resolve(result[0]);
+      result = this._getTypeProperties(result);
+    }
+    return result;
+  }
+
+  _getTypeProperties(type) {
+    const helper = this.helper;
+    if (helper._hasType(type, helper.ns.w3.shacl.NodeShape)) {
+      return helper._getValueArray(type, helper.ns.w3.shacl.property);
+    }
+    if (helper._hasType(type, helper.ns.aml.vocabularies.shapes.ArrayShape)) {
+      const items = helper._getValueArray(type, helper.ns.aml.vocabularies.shapes.items);
+      if (items) {
+        return helper._resolve(items[0]);
+      }
+    }
+    return type;
+  }
+
   setData(id) {
     const helper = this.helper;
     const webApi = helper._computeWebApi(this.amf);
@@ -54,13 +87,19 @@ class ApiDemo extends ApiDemoPageBase {
     this.endpointParameters = helper._computeQueryParameters(endpoint);
     const method = helper._computeMethodModel(webApi, id);
     const expect = helper._computeExpects(method);
-    if (!expect) {
-      this.queryParameters = undefined;
-      return;
-    }
-    const key = helper._getAmfKey(helper.ns.aml.vocabularies.apiContract.parameter);
-    this.queryParameters = helper._ensureArray(expect[key]);
-    this.hasData = true;
+    const params = this._readParamsProperties(expect);
+    this.queryParameters = params;
+    this.hasData = !!params;
+  }
+
+  _apiListTemplate() {
+    return [
+      ['demo-api', 'Demo API'],
+      ['SE-12752', 'Query string (SE-12752)'],
+    ].map(([file, label]) => html`
+      <paper-item data-src="${file}-compact.json">${label} - compact model</paper-item>
+      <paper-item data-src="${file}.json">${label}</paper-item>
+      `);
   }
 
   contentTemplate() {

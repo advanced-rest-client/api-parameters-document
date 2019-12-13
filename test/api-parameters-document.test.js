@@ -1,4 +1,4 @@
-import { fixture, assert, aTimeout } from '@open-wc/testing';
+import { fixture, assert, aTimeout, html } from '@open-wc/testing';
 import { AmfLoader } from './amf-loader.js';
 import '../api-parameters-document.js';
 
@@ -18,11 +18,22 @@ describe('<api-parameters-document>', function() {
       </div>`));
   }
 
+  async function modelFixture(amf, baseParams, endpointParams, queryParams) {
+    return (await fixture(html`<api-parameters-document
+      queryopened
+      pathopened
+      .amf="${amf}"
+      .baseUriParameters="${baseParams}"
+      .endpointParameters="${endpointParams}"
+      .queryParameters="${queryParams}"
+    ></api-parameters-document>`));
+  }
+
   describe('Raml aware', () => {
     let element;
     let amf;
     before(async () => {
-      amf = await AmfLoader.load(false);
+      amf = await AmfLoader.load({});
     });
 
     beforeEach(async () => {
@@ -50,7 +61,7 @@ describe('<api-parameters-document>', function() {
     let element;
     let amf;
     before(async () => {
-      amf = await AmfLoader.load(false);
+      amf = await AmfLoader.load({});
     });
 
     beforeEach(async () => {
@@ -97,8 +108,8 @@ describe('<api-parameters-document>', function() {
   [
     ['Full AMF model', false],
     ['Compact AMF model', true]
-  ].forEach((item) => {
-    describe(item[0], () => {
+  ].forEach(([label, compact]) => {
+    describe(label, () => {
       let element;
       let amf;
 
@@ -113,7 +124,7 @@ describe('<api-parameters-document>', function() {
 
       describe('Base path parameters', () => {
         before(async () => {
-          amf = await AmfLoader.load(item[1]);
+          amf = await AmfLoader.load({ compact });
         });
 
         beforeEach(async () => {
@@ -133,7 +144,7 @@ describe('<api-parameters-document>', function() {
           assert.ok(section);
         });
 
-        it('Parameters are set on table', () => {
+        it('Parameters are set on the table', () => {
           const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
           assert.isTrue(doc.type === element._effectivePathParameters);
         });
@@ -147,7 +158,7 @@ describe('<api-parameters-document>', function() {
 
       describe('Base path + endpoint path parameters', () => {
         before(async () => {
-          amf = await AmfLoader.load(item[1]);
+          amf = await AmfLoader.load({ compact });
         });
 
         beforeEach(async () => {
@@ -180,7 +191,7 @@ describe('<api-parameters-document>', function() {
 
       describe('Base path + endpoint path parameters + query parameters', () => {
         before(async () => {
-          amf = await AmfLoader.load(item[1]);
+          amf = await AmfLoader.load({ compact });
         });
 
         beforeEach(async () => {
@@ -211,7 +222,7 @@ describe('<api-parameters-document>', function() {
 
       describe('Narrow layout', () => {
         before(async () => {
-          const data = await AmfLoader.load(item[1]);
+          const data = await AmfLoader.load({ compact });
           amf = data[0];
         });
 
@@ -241,6 +252,51 @@ describe('<api-parameters-document>', function() {
           const fontSize = getComputedStyle(title).fontSize;
           assert.equal(fontSize, '16px');
         });
+      });
+    });
+
+    describe('queryString support', () => {
+      let amf;
+      before(async () => {
+        const data = await AmfLoader.load({ compact, fileName: 'SE-12752' });
+        amf = data[0];
+      });
+
+      let baseParameters;
+      beforeEach(async () => {
+        baseParameters = AmfLoader.lookupServerVariables(amf);
+      });
+
+      it('renders query parameters for a NodeShape', async () => {
+        const endpointParameters = AmfLoader.lookupPathParameters(amf, '/test');
+        const queryParameters = AmfLoader.lookupQueryParameters(amf, '/test', 'get');
+        const element = await modelFixture(amf, baseParameters, endpointParameters, queryParameters);
+        const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+        assert.ok(doc);
+      });
+
+      it('renders query parameters for an ArrayShape', async () => {
+        const endpointParameters = AmfLoader.lookupPathParameters(amf, '/array');
+        const queryParameters = AmfLoader.lookupQueryParameters(amf, '/array', 'get');
+        const element = await modelFixture(amf, baseParameters, endpointParameters, queryParameters);
+        const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+        assert.ok(doc);
+      });
+
+      it('renders query parameters for an UnionShape', async () => {
+        const endpointParameters = AmfLoader.lookupPathParameters(amf, '/union');
+        const queryParameters = AmfLoader.lookupQueryParameters(amf, '/union', 'get');
+        const element = await modelFixture(amf, baseParameters, endpointParameters, queryParameters);
+        const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+        assert.ok(doc);
+      });
+
+      it('renders query parameters for a ScalarShape', async () => {
+        const endpointParameters = AmfLoader.lookupPathParameters(amf, '/scalar');
+        const queryParameters = AmfLoader.lookupQueryParameters(amf, '/scalar', 'get');
+        const element = await modelFixture(amf, baseParameters, endpointParameters, queryParameters);
+        const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+        assert.ok(doc);
       });
     });
   });
