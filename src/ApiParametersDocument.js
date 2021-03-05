@@ -40,22 +40,14 @@ export class ApiParametersDocument extends LitElement {
       display: flex;
       flex-direction: row;
       align-items: center;
-      cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
+      cursor: pointer;
+      user-select: none;
       transition: border-bottom-color 0.15s ease-in-out;
     }
-
+    
     .section-title-area[opened] {
       border-bottom-color: transparent;
-    }
-
-    .section-title-area .table-title {
-      flex: 1;
-      flex-basis: 0.000000001px;
     }
 
     .toggle-icon {
@@ -69,17 +61,16 @@ export class ApiParametersDocument extends LitElement {
       transform: rotateZ(-180deg);
     }
 
-    .table-title {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .heading3 {
+      flex: 1;
+      color: var(--arc-font-subhead-color);
       font-size: var(--arc-font-subhead-font-size);
       font-weight: var(--arc-font-subhead-font-weight);
       line-height: var(--arc-font-subhead-line-height);
     }
-
-    :host([narrow]) .table-title {
-      font-size: var(--api-parameters-document-title-narrow-font-size, initial);
+    
+    :host([narrow]) .heading3 {
+      font-size: var(--arc-font-subhead-narrow-font-size, 17px);
     }
 
     .icon {
@@ -117,7 +108,7 @@ export class ApiParametersDocument extends LitElement {
         title="Toogle URI parameters details"
         ?opened="${pathOpened}"
       >
-        <div class="table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
+        <div class="heading3 table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(pathOpened)}
@@ -144,7 +135,7 @@ export class ApiParametersDocument extends LitElement {
         title="Toogle query parameters details"
         ?opened="${queryOpened}"
       >
-        <div class="table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
+        <div class="heading3 table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(queryOpened)}
