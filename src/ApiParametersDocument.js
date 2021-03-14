@@ -13,12 +13,12 @@ import '@anypoint-web-components/anypoint-button/anypoint-button.js';
  * URI and query parameters documentation table based on
  * [AMF](https://github.com/mulesoft/amf) json/ld model.
  *
- * It requires you to set at least one of the following properties:
+ * One of the following properties must be set:
  * - baseUriParameters
  * - endpointParameters
  * - queryParameters
  *
- * Otherwise it render empty block element.
+ * Otherwise it renders an empty block element.
  *
  * See demo for example implementation.
  */
@@ -40,9 +40,6 @@ export class ApiParametersDocument extends LitElement {
       flex-direction: row;
       align-items: center;
       cursor: pointer;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
       user-select: none;
       border-bottom: 1px var(--api-parameters-document-title-border-color, #e5e5e5) solid;
       transition: border-bottom-color 0.15s ease-in-out;
@@ -50,11 +47,6 @@ export class ApiParametersDocument extends LitElement {
 
     .section-title-area[data-opened] {
       border-bottom-color: transparent;
-    }
-
-    .section-title-area .table-title {
-      flex: 1;
-      flex-basis: 0.000000001px;
     }
 
     .toggle-icon {
@@ -68,17 +60,16 @@ export class ApiParametersDocument extends LitElement {
       transform: rotateZ(-180deg);
     }
 
-    .table-title {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .heading3 {
+      flex: 1;
+      color: var(--arc-font-subhead-color);
       font-size: var(--arc-font-subhead-font-size);
       font-weight: var(--arc-font-subhead-font-weight);
       line-height: var(--arc-font-subhead-line-height);
     }
 
-    :host([narrow]) .table-title {
-      font-size: var(--api-parameters-document-title-narrow-font-size, initial);
+    :host([narrow]) .heading3 {
+      font-size: var(--api-parameters-document-title-narrow-font-size, var(--arc-font-subhead-narrow-font-size, 17px));
     }`;
   }
 
@@ -111,7 +102,7 @@ export class ApiParametersDocument extends LitElement {
         title="Toggle URI parameters details"
         ?data-opened="${pathOpened}"
       >
-        <div class="table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
+        <div class="heading3" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(pathOpened)}
@@ -138,7 +129,7 @@ export class ApiParametersDocument extends LitElement {
         title="Toggle query parameters details"
         ?data-opened="${queryOpened}"
       >
-        <div class="table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
+        <div class="heading3" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(queryOpened)}
