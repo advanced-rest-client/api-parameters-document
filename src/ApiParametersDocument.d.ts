@@ -6,12 +6,12 @@ import { LitElement, CSSResult, TemplateResult } from 'lit-element';
  * URI and query parameters documentation table based on
  * [AMF](https://github.com/mulesoft/amf) json/ld model.
  *
- * It requires you to set at least one of the following properties:
+ * One of the following properties must be set:
  * - baseUriParameters
  * - endpointParameters
  * - queryParameters
  *
- * Otherwise it render empty block element.
+ * Otherwise it renders an empty block element.
  *
  * See demo for example implementation.
  */

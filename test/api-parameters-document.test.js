@@ -228,14 +228,14 @@ describe('ApiParametersDocument', () => {
 
         it('Narrow style is applied to the URI title', async () => {
           element.style.setProperty('--api-parameters-document-title-narrow-font-size', '16px');
-          const title = element.shadowRoot.querySelector('.uri-parameters .table-title');
+          const title = element.shadowRoot.querySelector('.uri-parameters .heading3');
           const { fontSize } = getComputedStyle(title);
           assert.equal(fontSize, '16px');
         });
 
         it('Narrow style is applied to the Query title', async () => {
           element.style.setProperty('--api-parameters-document-title-narrow-font-size', '16px');
-          const title = element.shadowRoot.querySelector('.query-parameters .table-title');
+          const title = element.shadowRoot.querySelector('.query-parameters .heading3');
           const { fontSize } = getComputedStyle(title);
           assert.equal(fontSize, '16px');
         });
