@@ -2,63 +2,43 @@ import { fixture, assert, aTimeout, html } from '@open-wc/testing';
 import { AmfLoader } from './amf-loader.js';
 import '../api-parameters-document.js';
 
-describe('<api-parameters-document>', function() {
+/** @typedef {import('../').ApiParametersDocument} ApiParametersDocument */
+
+describe('ApiParametersDocument', () => {
+  /**
+   * @returns {Promise<ApiParametersDocument>}
+   */
   async function openedFixture() {
-    return (await fixture(`<api-parameters-document queryopened pathopened></api-parameters-document>`));
+    return fixture(html`<api-parameters-document queryOpened pathOpened></api-parameters-document>`);
   }
 
+  /**
+   * @returns {Promise<ApiParametersDocument>}
+   */
   async function narrowFixture() {
-    return (await fixture(`<api-parameters-document narrow></api-parameters-document>`));
+    return fixture(html`<api-parameters-document narrow></api-parameters-document>`);
   }
 
-  async function awareFixture() {
-    return (await fixture(`<div>
-      <api-parameters-document aware="test-model"></api-parameters-document>
-      <raml-aware scope="test-model"></raml-aware>
-      </div>`));
-  }
-
+  /**
+   * @param {any} amf
+   * @param {any} baseParams
+   * @param {any} endpointParams
+   * @param {any} queryParams
+   * @returns {Promise<ApiParametersDocument>}
+   */
   async function modelFixture(amf, baseParams, endpointParams, queryParams) {
-    return (await fixture(html`<api-parameters-document
-      queryopened
-      pathopened
+    return fixture(html`<api-parameters-document
+      queryOpened
+      pathOpened
       .amf="${amf}"
       .baseUriParameters="${baseParams}"
       .endpointParameters="${endpointParams}"
       .queryParameters="${queryParams}"
-    ></api-parameters-document>`));
+    ></api-parameters-document>`);
   }
 
-  describe('Raml aware', () => {
-    let element;
-    let amf;
-    before(async () => {
-      amf = await AmfLoader.load({});
-    });
-
-    beforeEach(async () => {
-      const region = await awareFixture();
-      element = region.querySelector('api-parameters-document');
-      region.querySelector('raml-aware').api = amf;
-      await aTimeout();
-      element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
-      element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
-      element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
-    });
-
-    it('renders raml-aware', () => {
-      const node = element.shadowRoot.querySelector('raml-aware');
-      assert.ok(node);
-    });
-
-    it('sets amf value from aware', async () => {
-      await aTimeout();
-      assert.typeOf(element.amf, 'array');
-    });
-  });
-
   describe('Headers level', () => {
-    let element;
+    let element = /** @type ApiParametersDocument */ (null);
     let amf;
     before(async () => {
       amf = await AmfLoader.load({});
@@ -70,23 +50,23 @@ describe('<api-parameters-document>', function() {
       element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
       element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
       element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
-      await aTimeout();
+      await aTimeout(0);
     });
 
     it('sets default header level', () => {
-      const urititle = element.shadowRoot.querySelector('.uri-parameters [role="heading"]');
-      assert.equal(urititle.getAttribute('aria-level'), '2');
-      const querytitle = element.shadowRoot.querySelector('.query-parameters [role="heading"]');
-      assert.equal(querytitle.getAttribute('aria-level'), '2');
+      const uriTitle = element.shadowRoot.querySelector('.uri-parameters [role="heading"]');
+      assert.equal(uriTitle.getAttribute('aria-level'), '2');
+      const queryTitle = element.shadowRoot.querySelector('.query-parameters [role="heading"]');
+      assert.equal(queryTitle.getAttribute('aria-level'), '2');
     });
 
     it('sets header level', async () => {
       element.headerLevel = 4;
-      await aTimeout();
-      const urititle = element.shadowRoot.querySelector('.uri-parameters [role="heading"]');
-      assert.equal(urititle.getAttribute('aria-level'), '4');
-      const querytitle = element.shadowRoot.querySelector('.query-parameters [role="heading"]');
-      assert.equal(querytitle.getAttribute('aria-level'), '4');
+      await aTimeout(0);
+      const uriTitle = element.shadowRoot.querySelector('.uri-parameters [role="heading"]');
+      assert.equal(uriTitle.getAttribute('aria-level'), '4');
+      const queryTitle = element.shadowRoot.querySelector('.query-parameters [role="heading"]');
+      assert.equal(queryTitle.getAttribute('aria-level'), '4');
     });
   });
 
@@ -109,14 +89,14 @@ describe('<api-parameters-document>', function() {
     ['Full AMF model', false],
     ['Compact AMF model', true]
   ].forEach(([label, compact]) => {
-    describe(label, () => {
-      let element;
+    describe(String(label), () => {
+      let element = /** @type ApiParametersDocument */ (null);
       let amf;
 
       describe('No data state', () => {
         it('Does not render params tables without data', async () => {
           element = await openedFixture();
-          await aTimeout();
+          await aTimeout(0);
           const doc = element.shadowRoot.querySelector('api-type-document');
           assert.notOk(doc);
         });
@@ -124,6 +104,7 @@ describe('<api-parameters-document>', function() {
 
       describe('Base path parameters', () => {
         before(async () => {
+          // @ts-ignore
           amf = await AmfLoader.load({ compact });
         });
 
@@ -131,7 +112,7 @@ describe('<api-parameters-document>', function() {
           element = await openedFixture();
           element.amf = amf;
           element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('Computes _effectivePathParameters', () => {
@@ -146,11 +127,12 @@ describe('<api-parameters-document>', function() {
 
         it('Parameters are set on the table', () => {
           const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
+          // @ts-ignore
           assert.isTrue(doc.type === element._effectivePathParameters);
         });
 
         it('Toggle button open the URI section', () => {
-          const button = element.shadowRoot.querySelector('.uri-parameters .section-title-area');
+          const button = /** @type HTMLElement */ (element.shadowRoot.querySelector('.uri-parameters .section-title-area'));
           button.click();
           assert.isFalse(element.pathOpened);
         });
@@ -158,6 +140,7 @@ describe('<api-parameters-document>', function() {
 
       describe('Base path + endpoint path parameters', () => {
         before(async () => {
+          // @ts-ignore
           amf = await AmfLoader.load({ compact });
         });
 
@@ -166,7 +149,7 @@ describe('<api-parameters-document>', function() {
           element.amf = amf;
           element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
           element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('Computes _effectivePathParameters', () => {
@@ -185,12 +168,14 @@ describe('<api-parameters-document>', function() {
 
         it('Query table is not', () => {
           const doc = element.shadowRoot.querySelector('.uri-parameters api-type-document');
+          // @ts-ignore
           assert.isTrue(doc.type === element._effectivePathParameters);
         });
       });
 
       describe('Base path + endpoint path parameters + query parameters', () => {
         before(async () => {
+          // @ts-ignore
           amf = await AmfLoader.load({ compact });
         });
 
@@ -200,7 +185,7 @@ describe('<api-parameters-document>', function() {
           element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
           element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/test-parameters/{feature}');
           element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('Renders query parameters table', () => {
@@ -210,11 +195,12 @@ describe('<api-parameters-document>', function() {
 
         it('Parameters are set on table', () => {
           const doc = element.shadowRoot.querySelector('.query-parameters api-type-document');
+          // @ts-ignore
           assert.isTrue(doc.type === element.queryParameters);
         });
 
         it('Toggle button open the Query section', () => {
-          const button = element.shadowRoot.querySelector('.query-parameters .section-title-area');
+          const button = /** @type HTMLElement */ (element.shadowRoot.querySelector('.query-parameters .section-title-area'));
           button.click();
           assert.isFalse(element.queryOpened);
         });
@@ -222,8 +208,9 @@ describe('<api-parameters-document>', function() {
 
       describe('Narrow layout', () => {
         before(async () => {
+          // @ts-ignore
           const data = await AmfLoader.load({ compact });
-          amf = data[0];
+          [amf] = data;
         });
 
         beforeEach(async () => {
@@ -232,7 +219,7 @@ describe('<api-parameters-document>', function() {
           element.baseUriParameters = AmfLoader.lookupServerVariables(amf);
           element.endpointParameters = AmfLoader.lookupPathParameters(amf, '/people');
           element.queryParameters = AmfLoader.lookupQueryParameters(amf, '/people', 'get');
-          await aTimeout();
+          await aTimeout(0);
         });
 
         it('Has narrow attribute', () => {
@@ -242,14 +229,14 @@ describe('<api-parameters-document>', function() {
         it('Narrow style is applied to the URI title', async () => {
           element.style.setProperty('--api-parameters-document-title-narrow-font-size', '16px');
           const title = element.shadowRoot.querySelector('.uri-parameters .table-title');
-          const fontSize = getComputedStyle(title).fontSize;
+          const { fontSize } = getComputedStyle(title);
           assert.equal(fontSize, '16px');
         });
 
         it('Narrow style is applied to the Query title', async () => {
           element.style.setProperty('--api-parameters-document-title-narrow-font-size', '16px');
           const title = element.shadowRoot.querySelector('.query-parameters .table-title');
-          const fontSize = getComputedStyle(title).fontSize;
+          const { fontSize } = getComputedStyle(title);
           assert.equal(fontSize, '16px');
         });
       });
@@ -258,8 +245,9 @@ describe('<api-parameters-document>', function() {
     describe('queryString support', () => {
       let amf;
       before(async () => {
+        // @ts-ignore
         const data = await AmfLoader.load({ compact, fileName: 'SE-12752' });
-        amf = data[0];
+        [amf] = data;
       });
 
       let baseParameters;
