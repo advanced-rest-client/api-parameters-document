@@ -1,16 +1,19 @@
+/* eslint-disable lit-a11y/click-events-have-key-events */
+/* eslint-disable class-methods-use-this */
 import { LitElement, html, css } from 'lit-element';
-import { expandMore } from '@advanced-rest-client/arc-icons/ArcIcons.js';
-import '@api-components/raml-aware/raml-aware.js';
+import { classMap } from 'lit-html/directives/class-map';
+import '@advanced-rest-client/arc-icons/arc-icon.js';
 import '@api-components/api-type-document/api-type-document.js';
-import '@polymer/iron-collapse/iron-collapse.js';
+import '@anypoint-web-components/anypoint-collapse/anypoint-collapse.js';
 import '@anypoint-web-components/anypoint-button/anypoint-button.js';
+
 /**
  * `api-parameters-document`
  *
  * URI and query parameters documentation table based on
  * [AMF](https://github.com/mulesoft/amf) json/ld model.
  *
- * It rquires you to set at least one of the following properties:
+ * It requires you to set at least one of the following properties:
  * - baseUriParameters
  * - endpointParameters
  * - queryParameters
@@ -18,10 +21,6 @@ import '@anypoint-web-components/anypoint-button/anypoint-button.js';
  * Otherwise it render empty block element.
  *
  * See demo for example implementation.
- *
- * @customElement
- * @demo demo/index.html
- * @memberof ApiElements
  */
 export class ApiParametersDocument extends LitElement {
   get styles() {
@@ -49,7 +48,7 @@ export class ApiParametersDocument extends LitElement {
       transition: border-bottom-color 0.15s ease-in-out;
     }
 
-    .section-title-area[opened] {
+    .section-title-area[data-opened] {
       border-bottom-color: transparent;
     }
 
@@ -80,19 +79,11 @@ export class ApiParametersDocument extends LitElement {
 
     :host([narrow]) .table-title {
       font-size: var(--api-parameters-document-title-narrow-font-size, initial);
-    }
-
-    .icon {
-      display: block;
-      width: 24px;
-      height: 24px;
-      fill: currentColor;
     }`;
   }
 
   render() {
     const {
-      aware,
       pathOpened,
       queryOpened,
       _effectivePathParameters,
@@ -101,31 +92,34 @@ export class ApiParametersDocument extends LitElement {
       narrow,
       compatibility,
       headerLevel,
-      graph
+      graph,
     } = this;
     const hasPathParameters = !!(_effectivePathParameters && _effectivePathParameters.length);
+    const pathClasses = {
+      'toggle-icon': true,
+      opened: !!pathOpened,
+    };
+    const queryClasses = {
+      'toggle-icon': true,
+      opened: !!queryOpened,
+    };
     return html`<style>${this.styles}</style>
-    ${aware ?
-      html`<raml-aware
-        @api-changed="${this._apiChangedHandler}"
-        .scope="${aware}"
-        data-source="api-parameters-document"></raml-aware>` : ''}
     ${hasPathParameters ? html`<section class="uri-parameters">
       <div
         class="section-title-area"
         @click="${this.toggleUri}"
-        title="Toogle URI parameters details"
-        ?opened="${pathOpened}"
+        title="Toggle URI parameters details"
+        ?data-opened="${pathOpened}"
       >
         <div class="table-title" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(pathOpened)}
-            <span class="icon ${this._computeToggleIconClass(pathOpened)}">${expandMore}</span>
+            <arc-icon class="${classMap(pathClasses)}" icon="expandMore"></arc-icon>
           </anypoint-button>
         </div>
       </div>
-      <iron-collapse .opened="${pathOpened}">
+      <anypoint-collapse .opened="${pathOpened}">
         <api-type-document
           .amf="${amf}"
           .type="${_effectivePathParameters}"
@@ -134,25 +128,25 @@ export class ApiParametersDocument extends LitElement {
           ?graph="${graph}"
           noExamplesActions
         ></api-type-document>
-      </iron-collapse>
+      </anypoint-collapse>
     </section>` : ''}
 
     ${queryParameters ? html`<section class="query-parameters">
       <div
         class="section-title-area"
         @click="${this.toggleQuery}"
-        title="Toogle query parameters details"
-        ?opened="${queryOpened}"
+        title="Toggle query parameters details"
+        ?data-opened="${queryOpened}"
       >
         <div class="table-title" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
           <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
             ${this._computeToggleActionLabel(queryOpened)}
-            <span class="icon ${this._computeToggleIconClass(queryOpened)}">${expandMore}</span>
+            <arc-icon class="${classMap(queryClasses)}" icon="expandMore"></arc-icon>
           </anypoint-button>
         </div>
       </div>
-      <iron-collapse .opened="${queryOpened}">
+      <anypoint-collapse .opened="${queryOpened}">
         <api-type-document
           .amf="${amf}"
           .type="${queryParameters}"
@@ -161,56 +155,46 @@ export class ApiParametersDocument extends LitElement {
           ?graph="${graph}"
           noExamplesActions
         ></api-type-document>
-      </iron-collapse>
+      </anypoint-collapse>
     </section>`: ''}`;
   }
 
   static get properties() {
     return {
       /**
-       * `raml-aware` scope property to use.
-       */
-      aware: { type: String },
-      /**
        * Generated AMF json/ld model form the API spec.
        * The element assumes the object of the first array item to be a
        * type of `"http://raml.org/vocabularies/document#Document`
        * on AMF vocabulary.
        *
-       * It is only usefult for the element to resolve references.
-       *
-       * @type {Object|Array}
+       * It is only useful for the element to resolve references.
        */
       amf: { type: Object },
       /**
        * Set to true to open the query parameters view.
-       * Autormatically updated when the view is toggled from the UI.
+       * Automatically updated when the view is toggled from the UI.
        */
       queryOpened: { type: Boolean },
       /**
        * Set to true to open the path parameters view.
-       * Autormatically updated when the view is toggled from the UI.
+       * Automatically updated when the view is toggled from the UI.
        */
       pathOpened: { type: Boolean },
       /**
        * The `http://raml.org/vocabularies/http#variable` entry
        * from API's `http://raml.org/vocabularies/http#server` model.
-       *
-       * @type {Array<Object>}
        */
       baseUriParameters: { type: Array },
       /**
        * Endpoint path parameters as
        * `http://raml.org/vocabularies/http#parameter` property value of the
        * type of `http://raml.org/vocabularies/http#EndPoint`
-       * @type {Array<Object>}
        */
       endpointParameters: { type: Array },
       /**
        * Method query parameters as
        * `http://raml.org/vocabularies/http#parameter` property value of the
        * type of `http://raml.org/vocabularies/http#Request`
-       * @type {Array<Object>}
        */
       queryParameters: { type: Array },
       /**
@@ -254,9 +238,13 @@ export class ApiParametersDocument extends LitElement {
   }
 
   set baseUriParameters(value) {
-    if (this._sop('baseUriParameters', value)) {
-      this._effectivePathParameters = this._computeEffectivePath(value, this.endpointParameters);
+    const old = this._baseUriParameters;
+    if (old === value) {
+      return;
     }
+    this._baseUriParameters = value;
+    this._effectivePathParameters = this._computeEffectivePath(value, this.endpointParameters);
+    this.requestUpdate('baseUriParameters', old);
   }
 
   get endpointParameters() {
@@ -264,46 +252,37 @@ export class ApiParametersDocument extends LitElement {
   }
 
   set endpointParameters(value) {
-    if (this._sop('endpointParameters', value)) {
-      this._effectivePathParameters = this._computeEffectivePath(this.baseUriParameters, value);
+    const old = this._endpointParameters;
+    if (old === value) {
+      return;
     }
+    this._endpointParameters = value;
+    this._effectivePathParameters = this._computeEffectivePath(this.baseUriParameters, value);
+    this.requestUpdate('endpointParameters', old);
   }
 
   constructor() {
     super();
     this.headerLevel = 2;
+    /**
+     * @type {any[]}
+     */
+    this.queryParameters = undefined;
+    /**
+     * @type {any}
+     */
+    this.amf = undefined;
+    this.narrow = false;
+    this.graph = false;
   }
 
-  _sop(prop, value) {
-    const key = '_' + prop;
-    const oldValue = this[key];
-    if (oldValue === value) {
-      return false;
-    }
-    this[key] = value;
-    this.requestUpdate(prop, oldValue);
-    return true;
-  }
-  /**
-   * Handler for amf model change from `raml-aware`
-   * @param {CustomEvent} e
-   */
-  _apiChangedHandler(e) {
-    const { value } = e.detail;
-    setTimeout(() => {
-      this.amf = value;
-      // For some reson this value is not reflected in the render function
-      // unles it is delayed
-    });
-  }
   /**
    * Computes combined array of base uri parameters and selected endpoint
    * parameters so the element can render single documentation table.
    *
-   * @param {?Array} base Base uri parameetrs
-   * @param {?Array} endpoint Endpoint's uri parameters
-   * @return {Array} Combined array. Can be empty array if arguments does not
-   * contain values.
+   * @param {any[]} base Base uri parameters
+   * @param {any[]} endpoint Endpoint's uri parameters
+   * @return {any[]} Combined array. Can be empty array if arguments does not contain values.
    */
   _computeEffectivePath(base, endpoint) {
     let result = [];
@@ -316,19 +295,14 @@ export class ApiParametersDocument extends LitElement {
     return result;
   }
 
-  // Computes a label for the section toggle buttons.
+  /**
+   * @param {boolean} opened 
+   * @returns {string} The label for the section toggle buttons.
+   */
   _computeToggleActionLabel(opened) {
     return opened ? 'Hide' : 'Show';
   }
 
-  // Computes class for the toggle's button icon.
-  _computeToggleIconClass(opened) {
-    let clazz = 'toggle-icon';
-    if (opened) {
-      clazz += ' opened';
-    }
-    return clazz;
-  }
   /**
    * Toggles URI parameters view.
    * Use `pathOpened` property instead.
@@ -336,6 +310,7 @@ export class ApiParametersDocument extends LitElement {
   toggleUri() {
     this.pathOpened = !this.pathOpened;
   }
+
   /**
    * Toggles `queryOpened` value.
    */
