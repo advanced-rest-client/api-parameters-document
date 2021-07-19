@@ -62,10 +62,11 @@ export class ApiParametersDocument extends LitElement {
 
     .heading3 {
       flex: 1;
-      color: var(--arc-font-subhead-color);
-      font-size: var(--arc-font-subhead-font-size);
-      font-weight: var(--arc-font-subhead-font-weight);
-      line-height: var(--arc-font-subhead-line-height);
+      font-family: var(--api-parameters-document-h3-font-family, var(--arc-font-subhead-font-family));
+      color: var(--api-parameters-document-h3-font-color, var(--arc-font-subhead-color));
+      font-size: var(--api-parameters-document-h3-font-size, var(--arc-font-subhead-font-size));
+      font-weight: var(--api-parameters-document-h3-font-weight, var(--arc-font-subhead-font-weight));
+      line-height: var(--api-parameters-document-h3-line-height, var(--arc-font-subhead-line-height));
     }
 
     :host([narrow]) .heading3 {
