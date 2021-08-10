@@ -105,7 +105,7 @@ export class ApiParametersDocument extends LitElement {
       >
         <div class="heading3" role="heading" aria-level="${headerLevel}">URI parameters</div>
         <div class="title-area-actions">
-          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}" data-toggle="uri-parameters">
             ${this._computeToggleActionLabel(pathOpened)}
             <arc-icon class="${classMap(pathClasses)}" icon="expandMore"></arc-icon>
           </anypoint-button>
@@ -132,7 +132,7 @@ export class ApiParametersDocument extends LitElement {
       >
         <div class="heading3" role="heading" aria-level="${headerLevel}">Query parameters</div>
         <div class="title-area-actions">
-          <anypoint-button class="toggle-button" ?compatibility="${compatibility}">
+          <anypoint-button class="toggle-button" ?compatibility="${compatibility}" data-toggle="query-parameters">
             ${this._computeToggleActionLabel(queryOpened)}
             <arc-icon class="${classMap(queryClasses)}" icon="expandMore"></arc-icon>
           </anypoint-button>
